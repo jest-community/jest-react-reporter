@@ -1,0 +1,333 @@
+import * as path from 'path';
+import { promisify } from 'util';
+import * as React from 'react';
+import { Box, Color, ColorProps, Static, render, useStdout } from 'ink';
+import slash from 'slash';
+import { Config } from '@jest/types';
+import { AggregatedResult, TestResult } from '@jest/test-result';
+import { BaseReporter, ReporterOnStartOptions } from '@jest/reporters';
+import { Test } from '@jest/reporters/build/types';
+import SnapshotStatus from './SnapshotStatus';
+import Summary from './Summary';
+import { DisplayName, FormattedPath } from './utils';
+import { PaddedColor } from './shared';
+
+const wait = promisify(setTimeout);
+
+type ConsoleBuffer = NonNullable<TestResult['console']>;
+type LogType = ConsoleBuffer[0]['type'];
+
+const TitleBullet = () => <Color bold>&#9679;</Color>;
+
+const Status: React.FC<ColorProps> = props => (
+  <PaddedColor inverse bold {...props} />
+);
+
+const Runs: React.FC = () => <Status yellow>RUNS</Status>;
+
+const Fails: React.FC = () => <Status red>FAIL</Status>;
+
+const Pass: React.FC = () => <Status green>PASS</Status>;
+
+const TestStatus = ({ testResult }: { testResult: TestResult }) => {
+  if (testResult.skipped) {
+    return null;
+  }
+
+  if (testResult.numFailingTests > 0 || testResult.testExecError) {
+    return <Fails />;
+  }
+
+  return <Pass />;
+};
+
+const ColoredConsole: React.FC<ColorProps & { type: LogType }> = ({
+  type,
+  ...props
+}: {
+  type: LogType;
+}) => <Color yellow={type === 'warn'} red={type === 'error'} {...props} />;
+
+const TestConsoleOutput = ({
+  console,
+  verbose,
+  cwd,
+}: { console?: ConsoleBuffer } & Pick<Config.ProjectConfig, 'cwd'> &
+  Pick<Config.GlobalConfig, 'verbose'>) => {
+  if (!console || console.length === 0) {
+    return null;
+  }
+
+  const TITLE_INDENT = verbose ? '\xa0'.repeat(2) : '\xa0'.repeat(4);
+  const CONSOLE_INDENT = TITLE_INDENT + '\xa0'.repeat(2);
+
+  const content = console.map(({ type, message, origin }) => {
+    origin = slash(path.relative(cwd, origin));
+    message = message
+      .split(/\n/)
+      .map(line => CONSOLE_INDENT + line)
+      .join('\n');
+
+    return (
+      <Box key={message} flexDirection="column" paddingBottom={1}>
+        <Box>
+          {TITLE_INDENT}{' '}
+          <ColoredConsole type={type} dim>
+            console.
+            {type}
+          </ColoredConsole>{' '}
+          <Color dim>{origin}</Color>
+        </Box>
+        <ColoredConsole type={type}>{message}</ColoredConsole>
+      </Box>
+    );
+  });
+
+  return (
+    <Box flexDirection="column">
+      <Box paddingBottom={1}>
+        &nbsp;&nbsp;
+        <TitleBullet /> Console:
+      </Box>
+      {content}
+    </Box>
+  );
+};
+
+const CompletedTests = ({
+  completedTests,
+  width,
+  globalConfig,
+  done,
+}: {
+  completedTests: Array<{
+    testResult: TestResult;
+    config: Config.ProjectConfig;
+  }>;
+  width?: number;
+  globalConfig: Config.GlobalConfig;
+  done: boolean;
+}) => {
+  if (completedTests.length === 0) {
+    return null;
+  }
+  const didUpdate = globalConfig.updateSnapshot === 'all';
+
+  return (
+    <Box paddingBottom={done ? 0 : 1} flexDirection="column">
+      <Static>
+        {completedTests.map(({ testResult, config }) => (
+          <React.Fragment key={testResult.testFilePath}>
+            <Box>
+              <TestStatus testResult={testResult} />
+              <DisplayName config={config || globalConfig} />
+              <FormattedPath
+                pad={8}
+                columns={width}
+                config={config || globalConfig}
+                testPath={testResult.testFilePath}
+              />
+            </Box>
+            <TestConsoleOutput
+              console={testResult.console}
+              verbose={globalConfig.verbose}
+              cwd={config.cwd}
+            />
+            {testResult.failureMessage &&
+              testResult.failureMessage.replace(/ /g, '\xa0')}
+            <SnapshotStatus
+              snapshot={testResult.snapshot}
+              afterUpdate={didUpdate}
+            />
+          </React.Fragment>
+        ))}
+      </Static>
+    </Box>
+  );
+};
+
+type DateEvents =
+  | { type: 'TestStart'; payload: { test: Test } }
+  | {
+      type: 'TestResult';
+      payload: {
+        aggregatedResults: AggregatedResult;
+        test: Test;
+        testResult: TestResult;
+      };
+    }
+  | { type: 'TestComplete' };
+
+type Props = {
+  register: (cb: (events: DateEvents) => void) => void;
+  startingAggregatedResults: AggregatedResult;
+  globalConfig: Config.GlobalConfig;
+  options: ReporterOnStartOptions;
+};
+
+type State = {
+  aggregatedResults: AggregatedResult;
+  completedTests: Array<{
+    testResult: TestResult;
+    config: Config.ProjectConfig;
+  }>;
+  currentTests: Array<[Config.Path, Config.ProjectConfig]>;
+  done: boolean;
+};
+
+const reporterReducer: React.Reducer<State, DateEvents> = (
+  prevState,
+  action,
+) => {
+  switch (action.type) {
+    case 'TestStart':
+      return {
+        ...prevState,
+        currentTests: [
+          ...prevState.currentTests,
+          [action.payload.test.path, action.payload.test.context.config],
+        ],
+      };
+    case 'TestResult': {
+      const { aggregatedResults, test, testResult } = action.payload;
+      const currentTests = prevState.currentTests.filter(
+        ([testPath]) => test.path !== testPath,
+      );
+      return {
+        ...prevState,
+        aggregatedResults,
+        completedTests: testResult.skipped
+          ? prevState.completedTests
+          : prevState.completedTests.concat({
+              config: test.context.config,
+              testResult,
+            }),
+        currentTests,
+      };
+    }
+    case 'TestComplete': {
+      return { ...prevState, done: true };
+    }
+  }
+};
+
+const Reporter: React.FC<Props> = ({
+  register,
+  globalConfig,
+  options,
+  startingAggregatedResults,
+}) => {
+  const [state, dispatch] = React.useReducer(reporterReducer, {
+    aggregatedResults: startingAggregatedResults,
+    completedTests: [],
+    currentTests: [],
+    done: false,
+  });
+
+  React.useLayoutEffect(() => {
+    register(dispatch);
+  }, [dispatch, register]);
+
+  const { stdout } = useStdout();
+  const width = stdout.columns;
+
+  const { currentTests, completedTests, aggregatedResults, done } = state;
+  const { estimatedTime = 0 } = options;
+
+  return (
+    <Box flexDirection="column">
+      <CompletedTests
+        completedTests={completedTests}
+        width={width}
+        globalConfig={globalConfig}
+        done={done}
+      />
+      {currentTests.length > 0 && (
+        <Box paddingBottom={1} flexDirection="column">
+          {currentTests.map(([path, config]) => (
+            <Box key={path + config.name}>
+              <Runs />
+              <DisplayName config={config || globalConfig} />
+              <FormattedPath
+                pad={8}
+                columns={width}
+                config={config || globalConfig}
+                testPath={path}
+              />
+            </Box>
+          ))}
+        </Box>
+      )}
+      {!done && (
+        <Summary
+          aggregatedResults={aggregatedResults}
+          options={{ estimatedTime, roundTime: true, width }}
+        />
+      )}
+    </Box>
+  );
+};
+
+export default class ReactReporter extends BaseReporter {
+  private _globalConfig: Config.GlobalConfig;
+  private _components: Array<(events: DateEvents) => void>;
+  private _unmount?: () => void;
+  private _waitUntilExit?: () => Promise<void>;
+
+  constructor(globalConfig: Config.GlobalConfig) {
+    super();
+    this._globalConfig = globalConfig;
+    this._components = [];
+  }
+
+  onRunStart(
+    aggregatedResults: AggregatedResult,
+    options: ReporterOnStartOptions,
+  ) {
+    // TODO: remove args after Jest 25 is published
+    super.onRunStart(aggregatedResults, options);
+    const { unmount, waitUntilExit } = render(
+      <Reporter
+        register={cb => this._components.push(cb)}
+        startingAggregatedResults={aggregatedResults}
+        options={options}
+        globalConfig={this._globalConfig}
+      />,
+      { experimental: true },
+    );
+
+    this._unmount = unmount;
+    this._waitUntilExit = waitUntilExit;
+  }
+
+  onTestStart(test: Test) {
+    this._components.forEach(cb =>
+      cb({ payload: { test }, type: 'TestStart' }),
+    );
+  }
+
+  onTestResult(
+    test: Test,
+    testResult: TestResult,
+    aggregatedResults: AggregatedResult,
+  ) {
+    this._components.forEach(cb =>
+      cb({
+        payload: { aggregatedResults, test, testResult },
+        type: 'TestResult',
+      }),
+    );
+  }
+
+  async onRunComplete() {
+    this._components.forEach(cb => cb({ type: 'TestComplete' }));
+    // We wanna wait a bit to make sure we've flushed everything after completing tests
+    await wait(100);
+    if (this._unmount) {
+      this._unmount();
+    }
+    if (this._waitUntilExit) {
+      await this._waitUntilExit();
+    }
+  }
+}

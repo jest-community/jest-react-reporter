@@ -1,0 +1,105 @@
+{
+  "name": "jest-react-reporter",
+  "version": "0.0.0",
+  "description": "Reporter for Jest written in React",
+  "repository": "jest-community/jest-react-reporter",
+  "license": "MIT",
+  "author": "Simen Bekkhus <sbekkhus91@gmail.com>",
+  "files": [
+    "lib/"
+  ],
+  "main": "lib/",
+  "engines": {
+    "node": ">=8"
+  },
+  "peerDependencies": {
+    "jest": "^24.9.0 || ^25.0.0"
+  },
+  "scripts": {
+    "prepare": "yarn build",
+    "lint": "eslint . --ignore-pattern '!.eslintrc.js' --ext js,ts,tsx",
+    "prettylint": "prettylint docs/**/*.md README.md package.json",
+    "test": "jest",
+    "build": "babel --extensions .js,.ts,.tsx src --out-dir lib",
+    "typecheck": "tsc -p ."
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.7.0",
+    "@babel/core": "^7.7.2",
+    "@babel/preset-env": "^7.7.1",
+    "@babel/preset-react": "^7.7.0",
+    "@babel/preset-typescript": "^7.7.2",
+    "@commitlint/cli": "^8.2.0",
+    "@commitlint/config-conventional": "^8.2.0",
+    "@semantic-release/changelog": "^3.0.5",
+    "@semantic-release/git": "^7.0.18",
+    "@types/jest": "^24.0.15",
+    "@types/node": "^12.12.7",
+    "@types/react": "^16.9.11",
+    "@typescript-eslint/eslint-plugin": "^2.6.1",
+    "@typescript-eslint/parser": "^2.6.1",
+    "babel-jest": "^25.0.0",
+    "eslint": "^6.6.0",
+    "eslint-config-prettier": "^6.5.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jest": "^23.0.3",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-react": "^7.16.0",
+    "husky": "^3.0.9",
+    "jest": "^25.0.0",
+    "lint-staged": "^9.4.2",
+    "prettier": "^1.19.1",
+    "prettylint": "^1.0.0",
+    "semantic-release": "^15.13.30",
+    "typescript": "^3.7.2"
+  },
+  "prettier": {
+    "proseWrap": "always",
+    "singleQuote": true,
+    "trailingComma": "all"
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx}": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.{md,json}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -e $HUSKY_GIT_PARAMS",
+      "pre-commit": "lint-staged"
+    }
+  },
+  "release": {
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      "@semantic-release/git",
+      "@semantic-release/github"
+    ]
+  },
+  "dependencies": {
+    "@jest/reporters": "^25.0.0",
+    "@jest/test-result": "^25.0.0",
+    "@jest/types": "^25.0.0",
+    "ink": "^2.5.0",
+    "jest-util": "^25.0.0",
+    "react": "^16.11.0",
+    "slash": "^3.0.0"
+  }
+}
