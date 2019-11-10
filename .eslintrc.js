@@ -18,6 +18,7 @@ module.exports = {
   ],
   parserOptions: {
     ecmaVersion: 2018,
+    sourceType: 'module',
   },
   env: {
     node: true,
@@ -61,13 +62,13 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['*.js'],
+      files: '*.js',
       rules: {
         '@typescript-eslint/no-require-imports': 'off',
       },
     },
     {
-      files: 'src/**/*',
+      files: ['*.ts', '*.tsx'],
       parserOptions: {
         sourceType: 'module',
       },

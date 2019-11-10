@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`handles passing test 1`] = `
+"<bold>Test Suites:</> </>0 of 1 total</>
+<bold>Tests:</>       </>0 total</>
+<bold>Snapshots:</>   </>0 total</>
+<bold>Time:</>        </>0s, estimated 1s</>
+<yellow><bold><inverse> RUNS </></></> </><bold>…</></>
+
+<bold>Test Suites:</> </>0 of 1 total</>
+<bold>Tests:</>       </>0 total</>
+<bold>Snapshots:</>   </>0 total</>
+<bold>Time:</>        </>0s, estimated 1s</>
+<green><bold><inverse> PASS </></></> </><bold>…</></>
+
+<bold>Test Suites:</> </><green><bold>1 passed</></>, 1 total</>
+<bold>Tests:</>       </><green><bold>1 passed</></>, 1 total</>
+<bold>Snapshots:</>   </>0 total</>
+<bold>Time:</>        </>0s, estimated 1s</>
+
+<bold>Test Suites:</> </><green><bold>1 passed</></>, 1 total</>
+<bold>Tests:</>       </><green><bold>1 passed</></>, 1 total</>
+<bold>Snapshots:</>   </>0 total</>
+<bold>Time:</>        </>0s, estimated 1s</>"
+`;
