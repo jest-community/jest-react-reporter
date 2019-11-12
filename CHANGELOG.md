@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/jest-community/jest-react-reporter/compare/v1.1.0...v1.1.1) (2019-11-12)
+
+### Bug Fixes
+
+- do not print post summary message if silent
+  ([888fced](https://github.com/jest-community/jest-react-reporter/commit/888fced1c9ff1c01c90a4a5bccd528c73fd06962))
+
 # [1.1.0](https://github.com/jest-community/jest-react-reporter/compare/v1.0.2...v1.1.0) (2019-11-12)
 
 ### Features
