@@ -1,7 +1,6 @@
 import * as path from 'path';
-import { promisify } from 'util';
 import * as React from 'react';
-import { Box, Color, ColorProps, Static, render, useStdout } from 'ink';
+import { Box, Color, ColorProps, Static, render, useApp, useStdout } from 'ink';
 import slash from 'slash';
 import { Config } from '@jest/types';
 import { AggregatedResult, TestResult } from '@jest/test-result';
@@ -11,8 +10,6 @@ import SnapshotStatus from './SnapshotStatus';
 import Summary from './Summary';
 import { DisplayName, FormattedPath } from './utils';
 import { PaddedColor } from './shared';
-
-const wait = promisify(setTimeout);
 
 type ConsoleBuffer = NonNullable<TestResult['console']>;
 type LogType = ConsoleBuffer[0]['type'];
@@ -211,6 +208,16 @@ const reporterReducer: React.Reducer<State, DateEvents> = (
   }
 };
 
+const AppExiter: React.FC = () => {
+  const { exit } = useApp();
+
+  React.useEffect(() => {
+    exit();
+  }, [exit]);
+
+  return null;
+};
+
 const Reporter: React.FC<Props> = ({
   register,
   globalConfig,
@@ -258,7 +265,9 @@ const Reporter: React.FC<Props> = ({
           ))}
         </Box>
       )}
-      {!done && (
+      {done ? (
+        <AppExiter />
+      ) : (
         <Summary
           aggregatedResults={aggregatedResults}
           options={{ estimatedTime, roundTime: true, width }}
@@ -271,7 +280,6 @@ const Reporter: React.FC<Props> = ({
 export default class ReactReporter extends BaseReporter {
   private _globalConfig: Config.GlobalConfig;
   private _components: Array<(events: DateEvents) => void>;
-  private _unmount?: () => void;
   private _waitUntilExit?: () => Promise<void>;
 
   constructor(globalConfig: Config.GlobalConfig) {
@@ -286,7 +294,7 @@ export default class ReactReporter extends BaseReporter {
   ) {
     // TODO: remove args after Jest 25 is published
     super.onRunStart(aggregatedResults, options);
-    const { unmount, waitUntilExit } = render(
+    const { waitUntilExit } = render(
       <Reporter
         register={cb => this._components.push(cb)}
         startingAggregatedResults={aggregatedResults}
@@ -296,7 +304,6 @@ export default class ReactReporter extends BaseReporter {
       { experimental: true },
     );
 
-    this._unmount = unmount;
     this._waitUntilExit = waitUntilExit;
   }
 
@@ -321,11 +328,6 @@ export default class ReactReporter extends BaseReporter {
 
   async onRunComplete() {
     this._components.forEach(cb => cb({ type: 'TestComplete' }));
-    // We wanna wait a bit to make sure we've flushed everything after completing tests
-    await wait(100);
-    if (this._unmount) {
-      this._unmount();
-    }
     if (this._waitUntilExit) {
       await this._waitUntilExit();
     }
