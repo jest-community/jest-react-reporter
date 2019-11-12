@@ -63,6 +63,10 @@ export const PostMessage: React.FC<{
   globalConfig: Config.GlobalConfig;
   contexts: Set<Context>;
 }> = ({ aggregatedResults, globalConfig, contexts }) => {
+  if (globalConfig.silent) {
+    return null;
+  }
+
   if (aggregatedResults.wasInterrupted) {
     return (
       <Color bold red>
