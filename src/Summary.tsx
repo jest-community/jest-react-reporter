@@ -198,15 +198,14 @@ export const Summary: React.FC<{
       <Box>
         <SummaryHeading>Time</SummaryHeading>
 
-        <Time runTime={runTime} done={done} estimatedTime={estimatedTime} />
+        <Time runTime={runTime} estimatedTime={estimatedTime} />
       </Box>
-      {done ? null : (
-        <ProgressBar
-          runTime={runTime}
-          estimatedTime={estimatedTime}
-          width={width}
-        />
-      )}
+      <ProgressBar
+        done={done}
+        runTime={runTime}
+        estimatedTime={estimatedTime}
+        width={width}
+      />
     </Box>
   );
 };
@@ -214,8 +213,12 @@ export const Summary: React.FC<{
 const ProgressBar: React.FC<{
   runTime: number;
   estimatedTime: number;
+  done: boolean;
   width?: number;
-}> = ({ estimatedTime, runTime, width }) => {
+}> = ({ estimatedTime, runTime, width, done }) => {
+  if (done) {
+    return null;
+  }
   // Only show a progress bar if the test run is actually going to take
   // some time.
   if (estimatedTime <= 2 || runTime >= estimatedTime || !width) {
@@ -243,8 +246,7 @@ const ProgressBar: React.FC<{
 const Time: React.FC<{
   runTime: number;
   estimatedTime: number;
-  done: boolean;
-}> = ({ runTime, estimatedTime, done }) => {
+}> = ({ runTime, estimatedTime }) => {
   // If we are more than one second over the estimated time, highlight it.
   const renderedTime =
     estimatedTime && runTime >= estimatedTime + 1 ? (
@@ -258,9 +260,7 @@ const Time: React.FC<{
   return (
     <Box>
       {renderedTime}
-      {!done && runTime < estimatedTime ? (
-        <>, estimated {estimatedTime}s</>
-      ) : null}
+      {runTime < estimatedTime ? <>, estimated {estimatedTime}s</> : null}
     </Box>
   );
 };
