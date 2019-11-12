@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/jest-community/jest-react-reporter/compare/v1.0.2...v1.1.0) (2019-11-12)
+
+### Features
+
+- add message after summary
+  ([ca67328](https://github.com/jest-community/jest-react-reporter/commit/ca67328ef616fb1d549a5c5d2aa0a408cbf10b0f))
+
 ## [1.0.2](https://github.com/jest-community/jest-react-reporter/compare/v1.0.1...v1.0.2) (2019-11-12)
 
 ### Bug Fixes
