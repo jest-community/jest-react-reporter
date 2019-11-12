@@ -5,11 +5,12 @@ import slash from 'slash';
 import { Config } from '@jest/types';
 import { AggregatedResult, TestResult } from '@jest/test-result';
 import { BaseReporter, ReporterOnStartOptions } from '@jest/reporters';
-import { Test } from '@jest/reporters/build/types';
+import { Context, Test } from '@jest/reporters/build/types';
 import { SnapshotStatus } from './SnapshotStatus';
 import { Summary } from './Summary';
 import { DisplayName, FormattedPath } from './utils';
 import { PaddedColor } from './shared';
+import { PostMessage } from './PostMessage';
 
 type ConsoleBuffer = NonNullable<TestResult['console']>;
 type LogType = ConsoleBuffer[0]['type'];
@@ -147,7 +148,7 @@ type DateEvents =
         testResult: TestResult;
       };
     }
-  | { type: 'TestComplete' };
+  | { type: 'TestComplete'; payload: { contexts: Set<Context> } };
 
 type Props = {
   register: (cb: (events: DateEvents) => void) => void;
@@ -164,6 +165,7 @@ type State = {
   }>;
   currentTests: Array<[Config.Path, Config.ProjectConfig]>;
   done: boolean;
+  contexts: Set<Context>;
 };
 
 const reporterReducer: React.Reducer<State, DateEvents> = (
@@ -197,7 +199,7 @@ const reporterReducer: React.Reducer<State, DateEvents> = (
       };
     }
     case 'TestComplete': {
-      return { ...prevState, done: true };
+      return { ...prevState, done: true, contexts: action.payload.contexts };
     }
   }
 };
@@ -213,6 +215,7 @@ const Reporter: React.FC<Props> = ({
     completedTests: [],
     currentTests: [],
     done: false,
+    contexts: new Set<Context>(),
   });
 
   React.useLayoutEffect(() => {
@@ -222,7 +225,13 @@ const Reporter: React.FC<Props> = ({
   const { stdout } = useStdout();
   const width = stdout.columns;
 
-  const { currentTests, completedTests, aggregatedResults, done } = state;
+  const {
+    currentTests,
+    completedTests,
+    aggregatedResults,
+    done,
+    contexts,
+  } = state;
   const { estimatedTime = 0 } = options;
 
   const { exit } = useApp();
@@ -260,6 +269,13 @@ const Reporter: React.FC<Props> = ({
         options={{ estimatedTime, roundTime: true, width }}
         done={done}
       />
+      {done ? (
+        <PostMessage
+          aggregatedResults={aggregatedResults}
+          globalConfig={globalConfig}
+          contexts={contexts}
+        />
+      ) : null}
     </Box>
   );
 };
@@ -313,8 +329,10 @@ export default class ReactReporter extends BaseReporter {
     );
   }
 
-  async onRunComplete() {
-    this._components.forEach(cb => cb({ type: 'TestComplete' }));
+  async onRunComplete(contexts: Set<Context>) {
+    this._components.forEach(cb =>
+      cb({ type: 'TestComplete', payload: { contexts } }),
+    );
     if (this._waitUntilExit) {
       await this._waitUntilExit();
     }
