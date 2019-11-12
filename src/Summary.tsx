@@ -28,7 +28,7 @@ const Summary: React.FC<{
     }
 
     setRunTime(newRunTime);
-  }, [time]);
+  }, [options, startTime, time]);
 
   const estimatedTime = (options && options.estimatedTime) || 0;
   const snapshotResults = aggregatedResults.snapshot;

@@ -233,7 +233,7 @@ const Reporter: React.FC<Props> = ({
 
   React.useLayoutEffect(() => {
     register(dispatch);
-  }, [dispatch, register]);
+  }, [register]);
 
   const { stdout } = useStdout();
   const width = stdout.columns;

@@ -8,7 +8,14 @@ module.exports = {
     'plugin:react/recommended',
     'prettier',
   ],
-  plugins: ['node', 'prettier', 'import', '@typescript-eslint', 'react'],
+  plugins: [
+    'node',
+    'prettier',
+    'import',
+    '@typescript-eslint',
+    'react',
+    'react-hooks',
+  ],
   parserOptions: {
     ecmaVersion: 2018,
   },
@@ -42,6 +49,8 @@ module.exports = {
     'import/no-duplicates': 'error',
     'import/no-extraneous-dependencies': 'error',
     'import/no-unused-modules': 'error',
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'error',
     // handled by TS
     'react/prop-types': 'off',
   },
