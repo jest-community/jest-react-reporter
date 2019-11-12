@@ -13,10 +13,11 @@ const SummaryHeading: React.FC = ({ children }) => (
   </Box>
 );
 
-const Summary: React.FC<{
+export const Summary: React.FC<{
   aggregatedResults: AggregatedResult;
+  done: boolean;
   options?: SummaryOptions;
-}> = ({ aggregatedResults, options }) => {
+}> = ({ aggregatedResults, done, options }) => {
   const { startTime } = aggregatedResults;
   const [runTime, setRunTime] = React.useState(0);
   const time = useCounter();
@@ -197,13 +198,15 @@ const Summary: React.FC<{
       <Box>
         <SummaryHeading>Time</SummaryHeading>
 
-        <Time runTime={runTime} estimatedTime={estimatedTime} />
+        <Time runTime={runTime} done={done} estimatedTime={estimatedTime} />
       </Box>
-      <ProgressBar
-        runTime={runTime}
-        estimatedTime={estimatedTime}
-        width={width}
-      />
+      {done ? null : (
+        <ProgressBar
+          runTime={runTime}
+          estimatedTime={estimatedTime}
+          width={width}
+        />
+      )}
     </Box>
   );
 };
@@ -237,10 +240,11 @@ const ProgressBar: React.FC<{
   );
 };
 
-const Time: React.FC<{ runTime: number; estimatedTime: number }> = ({
-  runTime,
-  estimatedTime,
-}) => {
+const Time: React.FC<{
+  runTime: number;
+  estimatedTime: number;
+  done: boolean;
+}> = ({ runTime, estimatedTime, done }) => {
   // If we are more than one second over the estimated time, highlight it.
   const renderedTime =
     estimatedTime && runTime >= estimatedTime + 1 ? (
@@ -254,9 +258,9 @@ const Time: React.FC<{ runTime: number; estimatedTime: number }> = ({
   return (
     <Box>
       {renderedTime}
-      {runTime < estimatedTime && <>, estimated {estimatedTime}s</>}
+      {!done && runTime < estimatedTime ? (
+        <>, estimated {estimatedTime}s</>
+      ) : null}
     </Box>
   );
 };
-
-export default Summary;

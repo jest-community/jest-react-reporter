@@ -27,7 +27,7 @@ const SnapshotOutdated: React.FC = ({ children }) => (
   </Color>
 );
 
-const SnapshotStatus: React.FC<{
+export const SnapshotStatus: React.FC<{
   snapshot: TestResult['snapshot'];
   afterUpdate: boolean;
 }> = ({ snapshot, afterUpdate }) => (
@@ -73,5 +73,3 @@ const SnapshotStatus: React.FC<{
     )}
   </>
 );
-
-export default SnapshotStatus;

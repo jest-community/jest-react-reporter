@@ -6,8 +6,8 @@ import { Config } from '@jest/types';
 import { AggregatedResult, TestResult } from '@jest/test-result';
 import { BaseReporter, ReporterOnStartOptions } from '@jest/reporters';
 import { Test } from '@jest/reporters/build/types';
-import SnapshotStatus from './SnapshotStatus';
-import Summary from './Summary';
+import { SnapshotStatus } from './SnapshotStatus';
+import { Summary } from './Summary';
 import { DisplayName, FormattedPath } from './utils';
 import { PaddedColor } from './shared';
 
@@ -91,27 +91,21 @@ const TestConsoleOutput = ({
   );
 };
 
-const CompletedTests = ({
-  completedTests,
-  width,
-  globalConfig,
-  done,
-}: {
+const CompletedTests: React.FC<{
   completedTests: Array<{
     testResult: TestResult;
     config: Config.ProjectConfig;
   }>;
   width?: number;
   globalConfig: Config.GlobalConfig;
-  done: boolean;
-}) => {
+}> = ({ completedTests, width, globalConfig }) => {
   if (completedTests.length === 0) {
     return null;
   }
   const didUpdate = globalConfig.updateSnapshot === 'all';
 
   return (
-    <Box paddingBottom={done ? 0 : 1} flexDirection="column">
+    <Box paddingBottom={1} flexDirection="column">
       <Static>
         {completedTests.map(({ testResult, config }) => (
           <React.Fragment key={testResult.testFilePath}>
@@ -208,16 +202,6 @@ const reporterReducer: React.Reducer<State, DateEvents> = (
   }
 };
 
-const AppExiter: React.FC = () => {
-  const { exit } = useApp();
-
-  React.useEffect(() => {
-    exit();
-  }, [exit]);
-
-  return null;
-};
-
 const Reporter: React.FC<Props> = ({
   register,
   globalConfig,
@@ -241,13 +225,19 @@ const Reporter: React.FC<Props> = ({
   const { currentTests, completedTests, aggregatedResults, done } = state;
   const { estimatedTime = 0 } = options;
 
+  const { exit } = useApp();
+  React.useEffect(() => {
+    if (done) {
+      exit();
+    }
+  }, [done, exit]);
+
   return (
     <Box flexDirection="column">
       <CompletedTests
         completedTests={completedTests}
         width={width}
         globalConfig={globalConfig}
-        done={done}
       />
       {currentTests.length > 0 && (
         <Box paddingBottom={1} flexDirection="column">
@@ -265,14 +255,11 @@ const Reporter: React.FC<Props> = ({
           ))}
         </Box>
       )}
-      {done ? (
-        <AppExiter />
-      ) : (
-        <Summary
-          aggregatedResults={aggregatedResults}
-          options={{ estimatedTime, roundTime: true, width }}
-        />
-      )}
+      <Summary
+        aggregatedResults={aggregatedResults}
+        options={{ estimatedTime, roundTime: true, width }}
+        done={done}
+      />
     </Box>
   );
 };
