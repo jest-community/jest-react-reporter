@@ -3,7 +3,7 @@ import { AggregatedResult } from '@jest/test-result';
 import { pluralize } from 'jest-util';
 import * as React from 'react';
 import { Box, Color, Text } from 'ink';
-import { useCounter } from './utils';
+import { useCounter } from './hooks';
 
 const PROGRESS_BAR_WIDTH = 40;
 

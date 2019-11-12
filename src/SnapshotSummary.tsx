@@ -3,8 +3,7 @@ import { Box, Color, Text } from 'ink';
 import { Config } from '@jest/types';
 import { pluralize } from 'jest-util';
 import { SnapshotSummary as SnapshotSummaryType } from '@jest/test-result';
-import { Arrow, Dot, DownArrow } from './shared';
-import { FormatFullTestPath } from './utils';
+import { Arrow, Dot, DownArrow, FormatFullTestPath } from './shared';
 
 const SnapshotSummary: React.FC<{
   snapshots: SnapshotSummaryType;

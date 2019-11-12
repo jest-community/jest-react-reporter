@@ -8,36 +8,13 @@ import { BaseReporter, ReporterOnStartOptions } from '@jest/reporters';
 import { Context, Test } from '@jest/reporters/build/types';
 import { SnapshotStatus } from './SnapshotStatus';
 import { Summary } from './Summary';
-import { DisplayName, FormattedPath } from './utils';
-import { PaddedColor } from './shared';
+import { DisplayName, FormattedPath, ResultHeader, Runs } from './shared';
 import { PostMessage } from './PostMessage';
 
 type ConsoleBuffer = NonNullable<TestResult['console']>;
 type LogType = ConsoleBuffer[0]['type'];
 
 const TitleBullet = () => <Color bold>&#9679;</Color>;
-
-const Status: React.FC<ColorProps> = props => (
-  <PaddedColor inverse bold {...props} />
-);
-
-const Runs: React.FC = () => <Status yellow>RUNS</Status>;
-
-const Fails: React.FC = () => <Status red>FAIL</Status>;
-
-const Pass: React.FC = () => <Status green>PASS</Status>;
-
-const TestStatus = ({ testResult }: { testResult: TestResult }) => {
-  if (testResult.skipped) {
-    return null;
-  }
-
-  if (testResult.numFailingTests > 0 || testResult.testExecError) {
-    return <Fails />;
-  }
-
-  return <Pass />;
-};
 
 const ColoredConsole: React.FC<ColorProps & { type: LogType }> = ({
   type,
@@ -110,16 +87,11 @@ const CompletedTests: React.FC<{
       <Static>
         {completedTests.map(({ testResult, config }) => (
           <React.Fragment key={testResult.testFilePath}>
-            <Box>
-              <TestStatus testResult={testResult} />
-              <DisplayName config={config || globalConfig} />
-              <FormattedPath
-                pad={8}
-                columns={width}
-                config={config || globalConfig}
-                testPath={testResult.testFilePath}
-              />
-            </Box>
+            <ResultHeader
+              config={config || globalConfig}
+              testResult={testResult}
+              width={width}
+            />
             <TestConsoleOutput
               console={testResult.console}
               verbose={globalConfig.verbose}
