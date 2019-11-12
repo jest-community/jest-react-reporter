@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/jest-community/jest-react-reporter/compare/v1.0.1...v1.0.2) (2019-11-12)
+
+### Bug Fixes
+
+- always render a summary, remove progress and estimation when done
+  ([4bc5cb3](https://github.com/jest-community/jest-react-reporter/commit/4bc5cb33d8b250c361e9812cd991ca0cb714536d))
+
 ## [1.0.1](https://github.com/jest-community/jest-react-reporter/compare/v1.0.0...v1.0.1) (2019-11-12)
 
 ### Bug Fixes
