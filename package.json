@@ -72,6 +72,9 @@
     ]
   },
   "jest": {
+    "reporters": [
+      "<rootDir>/"
+    ],
     "testEnvironment": "node"
   },
   "commitlint": {
