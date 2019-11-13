@@ -36,7 +36,7 @@ const TestConsoleOutput = ({
   const TITLE_INDENT = verbose ? '\xa0'.repeat(2) : '\xa0'.repeat(4);
   const CONSOLE_INDENT = TITLE_INDENT + '\xa0'.repeat(2);
 
-  const content = console.map(({ type, message, origin }) => {
+  const content = console.map(({ type, message, origin }, index) => {
     origin = slash(path.relative(cwd, origin));
     message = message
       .split(/\n/)
@@ -44,7 +44,7 @@ const TestConsoleOutput = ({
       .join('\n');
 
     return (
-      <Box key={message} flexDirection="column" paddingBottom={1}>
+      <Box key={index} flexDirection="column" paddingBottom={1}>
         <Box>
           {TITLE_INDENT}{' '}
           <ColoredConsole type={type} dim>
