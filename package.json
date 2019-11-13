@@ -99,6 +99,7 @@
     "@jest/reporters": "^25.0.0",
     "@jest/test-result": "^25.0.0",
     "@jest/types": "^25.0.0",
+    "chalk": "^2.4.2",
     "ink": "^2.5.0",
     "jest-util": "^25.0.0",
     "react": "^16.11.0",

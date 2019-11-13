@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Box, Color, ColorProps } from 'ink';
 import { TestResult } from '@jest/test-result';
 import { Config } from '@jest/types';
+import chalk from 'chalk';
 import slash from 'slash';
 import { relativePath } from './utils';
 
@@ -9,25 +10,28 @@ export const Arrow: React.FC = () => <>{' \u203A '}</>;
 export const Dot: React.FC = () => <>{' \u2022 '}</>;
 export const DownArrow: React.FC = () => <>{' \u21B3 '}</>;
 
+const pad = (string: string) => (chalk.supportsColor ? ` ${string} ` : string);
+
 const PaddedColor: React.FC<ColorProps> = ({ children, ...props }) => (
   <Box paddingRight={1}>
-    <Color {...props}>
-      &nbsp;
-      {children}
-      &nbsp;
-    </Color>
+    <Color {...props}>{children}</Color>
   </Box>
 );
 
-const Status: React.FC<ColorProps> = props => (
-  <PaddedColor inverse bold {...props} />
+const Status: React.FC<ColorProps & { text: string }> = ({
+  text,
+  ...props
+}) => (
+  <PaddedColor inverse bold {...props}>
+    {pad(text)}
+  </PaddedColor>
 );
 
-const Fails: React.FC = () => <Status red>FAIL</Status>;
+const Fails: React.FC = () => <Status red text="FAIL" />;
 
-const Pass: React.FC = () => <Status green>PASS</Status>;
+const Pass: React.FC = () => <Status green text="PASS" />;
 
-export const Runs: React.FC = () => <Status yellow>RUNS</Status>;
+export const Runs: React.FC = () => <Status yellow text="RUNS" />;
 
 export const DisplayName: React.FC<{
   config: Config.ProjectConfig;
