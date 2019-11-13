@@ -1,3 +1,10 @@
+## [1.1.7](https://github.com/jest-community/jest-react-reporter/compare/v1.1.6...v1.1.7) (2019-11-13)
+
+### Bug Fixes
+
+- always pass column width
+  ([636edb8](https://github.com/jest-community/jest-react-reporter/commit/636edb827457ef2385f8e5a564ba910462ce3f64))
+
 ## [1.1.6](https://github.com/jest-community/jest-react-reporter/compare/v1.1.5...v1.1.6) (2019-11-13)
 
 ### Bug Fixes
