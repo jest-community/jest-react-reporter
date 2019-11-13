@@ -1,3 +1,10 @@
+## [1.1.4](https://github.com/jest-community/jest-react-reporter/compare/v1.1.3...v1.1.4) (2019-11-13)
+
+### Bug Fixes
+
+- use padding for spacing rather than spaces
+  ([c98de61](https://github.com/jest-community/jest-react-reporter/commit/c98de619f5d23f80a6d77fa53d80b5addef600a0))
+
 ## [1.1.3](https://github.com/jest-community/jest-react-reporter/compare/v1.1.2...v1.1.3) (2019-11-13)
 
 ### Bug Fixes
