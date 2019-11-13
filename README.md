@@ -1,4 +1,4 @@
-[![Actions Status](https://github.com/jest-community/jest-react-reporter/workflows/Unit%20tests/badge.svg)](https://github.com/jest-community/eslint-plugin-jest/actions)
+[![Actions Status](https://github.com/jest-community/jest-react-reporter/workflows/Unit%20tests/badge.svg)](https://github.com/jest-community/jest-react-reporter/actions)
 
 ## Installation
 
