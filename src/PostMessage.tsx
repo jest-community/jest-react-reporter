@@ -13,16 +13,23 @@ const TestInfo: React.FC<{ config: Config.GlobalConfig }> = ({ config }) => {
   if (config.onlyChanged) {
     return <Color dim> related to changed files</Color>;
   }
-  const prefix = config.findRelatedTests
-    ? ' related to files matching '
-    : ' matching ';
 
-  return (
-    <Box>
-      <Color dim>{prefix}</Color>
-      <Text>{testPathPatternToRegExp(config.testPathPattern).toString()}</Text>
-    </Box>
-  );
+  if (config.testPathPattern) {
+    const prefix = config.findRelatedTests
+      ? ' related to files matching '
+      : ' matching ';
+
+    return (
+      <Box>
+        <Color dim>{prefix}</Color>
+        <Text>
+          {testPathPatternToRegExp(config.testPathPattern).toString()}
+        </Text>
+      </Box>
+    );
+  }
+
+  return null;
 };
 
 const NameInfo: React.FC<{ config: Config.GlobalConfig }> = ({ config }) => {
