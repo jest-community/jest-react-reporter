@@ -70,11 +70,8 @@ const TestConsoleOutput = ({
 };
 
 const CompletedTests: React.FC<{
-  completedTests: Array<{
-    testResult: TestResult;
-    config: Config.ProjectConfig;
-  }>;
-  width?: number;
+  completedTests: State['completedTests'];
+  width: number;
   globalConfig: Config.GlobalConfig;
 }> = ({ completedTests, width, globalConfig }) => {
   if (completedTests.length === 0) {
@@ -86,7 +83,7 @@ const CompletedTests: React.FC<{
     <Box paddingBottom={1} flexDirection="column">
       <Static>
         {completedTests.map(({ testResult, config }) => (
-          <React.Fragment key={testResult.testFilePath}>
+          <React.Fragment key={testResult.testFilePath + config.name}>
             <ResultHeader
               config={config || globalConfig}
               testResult={testResult}
@@ -176,6 +173,32 @@ const reporterReducer: React.Reducer<State, DateEvents> = (
   }
 };
 
+const RunningTests: React.FC<{
+  tests: State['currentTests'];
+  width: number;
+}> = ({ tests, width }) => {
+  if (tests.length === 0) {
+    return null;
+  }
+
+  return (
+    <Box paddingBottom={1} flexDirection="column">
+      {tests.map(([path, config]) => (
+        <Box key={path + config.name}>
+          <Runs />
+          <DisplayName config={config} />
+          <FormattedPath
+            pad={8}
+            columns={width}
+            config={config}
+            testPath={path}
+          />
+        </Box>
+      ))}
+    </Box>
+  );
+};
+
 const Reporter: React.FC<Props> = ({
   register,
   globalConfig,
@@ -220,22 +243,7 @@ const Reporter: React.FC<Props> = ({
         width={width}
         globalConfig={globalConfig}
       />
-      {currentTests.length > 0 && (
-        <Box paddingBottom={1} flexDirection="column">
-          {currentTests.map(([path, config]) => (
-            <Box key={path + config.name}>
-              <Runs />
-              <DisplayName config={config || globalConfig} />
-              <FormattedPath
-                pad={8}
-                columns={width}
-                config={config || globalConfig}
-                testPath={path}
-              />
-            </Box>
-          ))}
-        </Box>
-      )}
+      <RunningTests tests={currentTests} width={width} />
       <Summary
         aggregatedResults={aggregatedResults}
         options={{ estimatedTime, roundTime: true, width }}

@@ -69,7 +69,7 @@ const TestStatus: React.FC<{ testResult: TestResult }> = ({ testResult }) => {
 export const ResultHeader: React.FC<{
   testResult: TestResult;
   config: Config.ProjectConfig;
-  width?: number;
+  width: number;
 }> = ({ testResult, config, width }) => (
   <Box>
     <TestStatus testResult={testResult} />
@@ -92,9 +92,9 @@ export const FormattedPath = ({
   pad: number;
   config: Config.ProjectConfig | Config.GlobalConfig;
   testPath: Config.Path;
-  columns?: number;
+  columns: number;
 }) => {
-  const maxLength = (columns || 0) - pad;
+  const maxLength = columns - pad;
   const relative = relativePath(config, testPath);
   const { basename } = relative;
   let { dirname } = relative;
@@ -147,5 +147,6 @@ export const FormatFullTestPath: React.FC<{
   config: Config.GlobalConfig | Config.ProjectConfig;
   testPath: Config.Path;
 }> = ({ config, testPath }) => (
-  <FormattedPath config={config} testPath={testPath} pad={0} />
+  // TODO: maybe not 9000? We just don't want to trim it
+  <FormattedPath config={config} testPath={testPath} pad={0} columns={9000} />
 );
