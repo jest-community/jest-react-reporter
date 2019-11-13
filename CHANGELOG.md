@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/jest-community/jest-react-reporter/compare/v1.1.1...v1.1.2) (2019-11-13)
+
+### Bug Fixes
+
+- always show estimation if higher than runtime
+  ([bd653b1](https://github.com/jest-community/jest-react-reporter/commit/bd653b1d5dd1c81f504dd832166c413f996dd6ba))
+
 ## [1.1.1](https://github.com/jest-community/jest-react-reporter/compare/v1.1.0...v1.1.1) (2019-11-12)
 
 ### Bug Fixes
