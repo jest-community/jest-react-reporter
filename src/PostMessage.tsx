@@ -5,23 +5,39 @@ import { testPathPatternToRegExp } from 'jest-util';
 import * as React from 'react';
 import { Box, Color, Text } from 'ink';
 
+const LeftPadded: React.FC = ({ children }) => (
+  <Box paddingLeft={1}>{children}</Box>
+);
+
+const HorizontallyPadded: React.FC = ({ children }) => (
+  <Box paddingX={1}>{children}</Box>
+);
+
 const TestInfo: React.FC<{ config: Config.GlobalConfig }> = ({ config }) => {
   if (config.runTestsByPath) {
-    return <Color dim> within paths</Color>;
+    return (
+      <LeftPadded>
+        <Color dim>within paths</Color>
+      </LeftPadded>
+    );
   }
 
   if (config.onlyChanged) {
-    return <Color dim> related to changed files</Color>;
+    return (
+      <LeftPadded>
+        <Color dim>related to changed files</Color>
+      </LeftPadded>
+    );
   }
 
   if (config.testPathPattern) {
     const prefix = config.findRelatedTests
-      ? ' related to files matching '
-      : ' matching ';
+      ? 'related to files matching'
+      : 'matching';
 
     return (
       <Box>
-        <Color dim>{prefix}</Color>
+        <HorizontallyPadded>{prefix}</HorizontallyPadded>
         <Text>
           {testPathPatternToRegExp(config.testPathPattern).toString()}
         </Text>
@@ -39,10 +55,11 @@ const NameInfo: React.FC<{ config: Config.GlobalConfig }> = ({ config }) => {
 
   if (config.testNamePattern) {
     return (
-      <Color dim>
-        {' '}
-        with tests matching &quot;{config.testNamePattern}&quot;
-      </Color>
+      <LeftPadded>
+        <Color dim>
+          with tests matching &quot;{config.testNamePattern}&quot;
+        </Color>
+      </LeftPadded>
     );
   }
 
@@ -55,7 +72,9 @@ const ContextInfo: React.FC<{ numberOfContexts: number }> = ({
   if (numberOfContexts > 1) {
     return (
       <>
-        <Color dim> in </Color>
+        <HorizontallyPadded>
+          <Color dim>in</Color>
+        </HorizontallyPadded>
         <Text>{numberOfContexts}</Text>
         <Color dim> projects</Color>
       </>
