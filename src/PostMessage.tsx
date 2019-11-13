@@ -31,13 +31,13 @@ const TestInfo: React.FC<{ config: Config.GlobalConfig }> = ({ config }) => {
   }
 
   if (config.testPathPattern) {
-    const prefix = config.findRelatedTests
-      ? 'related to files matching'
-      : 'matching';
-
     return (
       <Box>
-        <HorizontallyPadded>{prefix}</HorizontallyPadded>
+        <HorizontallyPadded>
+          <Color dim>
+            {config.findRelatedTests ? 'related to files matching' : 'matching'}
+          </Color>
+        </HorizontallyPadded>
         <Text>
           {testPathPatternToRegExp(config.testPathPattern).toString()}
         </Text>
@@ -55,11 +55,12 @@ const NameInfo: React.FC<{ config: Config.GlobalConfig }> = ({ config }) => {
 
   if (config.testNamePattern) {
     return (
-      <LeftPadded>
-        <Color dim>
-          with tests matching &quot;{config.testNamePattern}&quot;
-        </Color>
-      </LeftPadded>
+      <>
+        <HorizontallyPadded>
+          <Color dim>with tests matching</Color>
+        </HorizontallyPadded>
+        <Text>&quot;{config.testNamePattern}&quot;</Text>
+      </>
     );
   }
 
