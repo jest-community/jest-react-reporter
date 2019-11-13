@@ -1,3 +1,10 @@
+## [1.1.6](https://github.com/jest-community/jest-react-reporter/compare/v1.1.5...v1.1.6) (2019-11-13)
+
+### Bug Fixes
+
+- include TS types in bundle
+  ([541a8d0](https://github.com/jest-community/jest-react-reporter/commit/541a8d0e3e733e35075521b864e2d1df6223a846))
+
 ## [1.1.5](https://github.com/jest-community/jest-react-reporter/compare/v1.1.4...v1.1.5) (2019-11-13)
 
 ### Bug Fixes
