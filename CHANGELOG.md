@@ -1,3 +1,10 @@
+## [1.1.8](https://github.com/jest-community/jest-react-reporter/compare/v1.1.7...v1.1.8) (2019-11-13)
+
+### Bug Fixes
+
+- print to stderr
+  ([de507dc](https://github.com/jest-community/jest-react-reporter/commit/de507dccce388a56271a640fed128c82dab93192))
+
 ## [1.1.7](https://github.com/jest-community/jest-react-reporter/compare/v1.1.6...v1.1.7) (2019-11-13)
 
 ### Bug Fixes
