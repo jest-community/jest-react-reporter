@@ -1,3 +1,14 @@
+## [1.1.9](https://github.com/jest-community/jest-react-reporter/compare/v1.1.8...v1.1.9) (2019-11-13)
+
+### Bug Fixes
+
+- care less about width of terminal
+  ([aa29f45](https://github.com/jest-community/jest-react-reporter/commit/aa29f4513d113306f840d46877003e38fe3d9fe5))
+- handle duplicate log messages without barfing
+  ([d48891a](https://github.com/jest-community/jest-react-reporter/commit/d48891ad69f2b50463561cf1bd62bb036e57677c))
+- use normal spaces as padding instead of nbsp
+  ([6a33c81](https://github.com/jest-community/jest-react-reporter/commit/6a33c81482a3341ffc7ff13919f38bde3fcf9448))
+
 ## [1.1.8](https://github.com/jest-community/jest-react-reporter/compare/v1.1.7...v1.1.8) (2019-11-13)
 
 ### Bug Fixes
