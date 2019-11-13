@@ -69,32 +69,21 @@ const TestStatus: React.FC<{ testResult: TestResult }> = ({ testResult }) => {
 export const ResultHeader: React.FC<{
   testResult: TestResult;
   config: Config.ProjectConfig;
-  width: number;
-}> = ({ testResult, config, width }) => (
+}> = ({ testResult, config }) => (
   <Box>
     <TestStatus testResult={testResult} />
     <DisplayName config={config} />
-    <FormattedPath
-      pad={8}
-      columns={width}
-      config={config}
-      testPath={testResult.testFilePath}
-    />
+    <FormatFullTestPath config={config} testPath={testResult.testFilePath} />
   </Box>
 );
 
-export const FormattedPath = ({
-  pad,
-  config,
-  testPath,
-  columns,
-}: {
+export const FormattedPath: React.FC<{
   pad: number;
   config: Config.ProjectConfig | Config.GlobalConfig;
   testPath: Config.Path;
-  columns: number;
-}) => {
-  const maxLength = columns - pad;
+  columns: number | undefined;
+}> = ({ pad, config, testPath, columns }) => {
+  const maxLength = (columns || Number.NaN) - pad;
   const relative = relativePath(config, testPath);
   const { basename } = relative;
   let { dirname } = relative;

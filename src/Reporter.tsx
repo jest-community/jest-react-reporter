@@ -81,9 +81,8 @@ const FailureMessage: React.FC<{
 
 const CompletedTests: React.FC<{
   completedTests: State['completedTests'];
-  width: number;
   globalConfig: Config.GlobalConfig;
-}> = ({ completedTests, width, globalConfig }) => {
+}> = ({ completedTests, globalConfig }) => {
   if (completedTests.length === 0) {
     return null;
   }
@@ -94,11 +93,7 @@ const CompletedTests: React.FC<{
       <Static>
         {completedTests.map(({ testResult, config }) => (
           <React.Fragment key={testResult.testFilePath + config.name}>
-            <ResultHeader
-              config={config}
-              testResult={testResult}
-              width={width}
-            />
+            <ResultHeader config={config} testResult={testResult} />
             <TestConsoleOutput
               console={testResult.console}
               verbose={globalConfig.verbose}
@@ -249,7 +244,6 @@ const Reporter: React.FC<Props> = ({
     <Box flexDirection="column">
       <CompletedTests
         completedTests={completedTests}
-        width={width}
         globalConfig={globalConfig}
       />
       <RunningTests tests={currentTests} width={width} />
