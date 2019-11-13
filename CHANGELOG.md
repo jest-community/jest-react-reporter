@@ -1,3 +1,10 @@
+## [1.1.3](https://github.com/jest-community/jest-react-reporter/compare/v1.1.2...v1.1.3) (2019-11-13)
+
+### Bug Fixes
+
+- only print pattern if not the default
+  ([e5e271e](https://github.com/jest-community/jest-react-reporter/commit/e5e271e17ac589edf4a22a53ee268d9ffab2e09d))
+
 ## [1.1.2](https://github.com/jest-community/jest-react-reporter/compare/v1.1.1...v1.1.2) (2019-11-13)
 
 ### Bug Fixes
