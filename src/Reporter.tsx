@@ -284,7 +284,8 @@ export default class ReactReporter extends BaseReporter {
         options={options}
         globalConfig={this._globalConfig}
       />,
-      { experimental: true },
+      // TODO: should respect `GlobalConfig.useStderr`? Jest itself does not: https://github.com/facebook/jest/issues/5064
+      { experimental: true, stdout: process.stderr },
     );
 
     this._waitUntilExit = waitUntilExit;
