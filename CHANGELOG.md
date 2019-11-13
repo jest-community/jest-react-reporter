@@ -1,3 +1,10 @@
+## [1.1.5](https://github.com/jest-community/jest-react-reporter/compare/v1.1.4...v1.1.5) (2019-11-13)
+
+### Bug Fixes
+
+- correct dimming of text in summary
+  ([2299ec7](https://github.com/jest-community/jest-react-reporter/commit/2299ec7e6d15af27f08b5c83ee4094de915e3eda))
+
 ## [1.1.4](https://github.com/jest-community/jest-react-reporter/compare/v1.1.3...v1.1.4) (2019-11-13)
 
 ### Bug Fixes
