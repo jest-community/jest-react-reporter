@@ -69,6 +69,16 @@ const TestConsoleOutput = ({
   );
 };
 
+const FailureMessage: React.FC<{
+  failureMessage: string | null | undefined;
+}> = ({ failureMessage }) => {
+  if (failureMessage) {
+    return <>{failureMessage.replace(/ /g, '\xa0')}</>;
+  }
+
+  return null;
+};
+
 const CompletedTests: React.FC<{
   completedTests: State['completedTests'];
   width: number;
@@ -85,7 +95,7 @@ const CompletedTests: React.FC<{
         {completedTests.map(({ testResult, config }) => (
           <React.Fragment key={testResult.testFilePath + config.name}>
             <ResultHeader
-              config={config || globalConfig}
+              config={config}
               testResult={testResult}
               width={width}
             />
@@ -94,8 +104,7 @@ const CompletedTests: React.FC<{
               verbose={globalConfig.verbose}
               cwd={config.cwd}
             />
-            {testResult.failureMessage &&
-              testResult.failureMessage.replace(/ /g, '\xa0')}
+            <FailureMessage failureMessage={testResult.failureMessage} />
             <SnapshotStatus
               snapshot={testResult.snapshot}
               afterUpdate={didUpdate}
