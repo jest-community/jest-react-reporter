@@ -13,6 +13,12 @@ const SummaryHeading: React.FC = ({ children }) => (
   </Box>
 );
 
+const RightPaddedWithComma: React.FC = ({ children }) => (
+  <Box paddingRight={1}>
+    <Text>{children},</Text>
+  </Box>
+);
+
 export const Summary: React.FC<{
   aggregatedResults: AggregatedResult;
   done: boolean;
@@ -90,12 +96,11 @@ export const Summary: React.FC<{
         <SummaryHeading>Tests</SummaryHeading>
         <Box>
           {testsFailed > 0 && (
-            <>
+            <RightPaddedWithComma>
               <Color bold red>
                 {testsFailed} failed
               </Color>
-              ,{' '}
-            </>
+            </RightPaddedWithComma>
           )}
           {testsPending > 0 && (
             <>
@@ -106,20 +111,18 @@ export const Summary: React.FC<{
             </>
           )}
           {testsTodo > 0 && (
-            <>
+            <RightPaddedWithComma>
               <Color bold magenta>
                 {testsTodo} todo
               </Color>
-              ,{' '}
-            </>
+            </RightPaddedWithComma>
           )}
           {testsPassed > 0 && (
-            <>
+            <RightPaddedWithComma>
               <Color bold green>
                 {testsPassed} passed
               </Color>
-              ,{' '}
-            </>
+            </RightPaddedWithComma>
           )}
           {testsTotal} total
         </Box>
@@ -128,20 +131,18 @@ export const Summary: React.FC<{
         <SummaryHeading>Snapshots</SummaryHeading>
         <Box>
           {snapshotsFailed > 0 && (
-            <>
+            <RightPaddedWithComma>
               <Color bold red>
                 {snapshotsFailed} failed
               </Color>
-              ,{' '}
-            </>
+            </RightPaddedWithComma>
           )}
           {snapshotsOutdated > 0 && !snapshotsDidUpdate && (
-            <>
+            <RightPaddedWithComma>
               <Color bold yellow>
                 {snapshotsOutdated} obsolete
               </Color>
-              ,{' '}
-            </>
+            </RightPaddedWithComma>
           )}
           {snapshotsOutdated > 0 && snapshotsDidUpdate && (
             <>
@@ -152,54 +153,48 @@ export const Summary: React.FC<{
             </>
           )}
           {snapshotsFilesRemoved > 0 && !snapshotsDidUpdate && (
-            <>
+            <RightPaddedWithComma>
               <Color bold yellow>
                 {pluralize('file', snapshotsFilesRemoved)} obsolete
               </Color>
-              ,{' '}
-            </>
+            </RightPaddedWithComma>
           )}
           {snapshotsFilesRemoved > 0 && snapshotsDidUpdate && (
-            <>
+            <RightPaddedWithComma>
               <Color bold green>
                 {pluralize('file', snapshotsFilesRemoved)} removed
               </Color>
-              ,{' '}
-            </>
+            </RightPaddedWithComma>
           )}
           {snapshotsUpdated > 0 && (
-            <>
+            <RightPaddedWithComma>
               <Color bold green>
                 {snapshotsUpdated} updated
               </Color>
-              ,{' '}
-            </>
+            </RightPaddedWithComma>
           )}
           {snapshotsAdded > 0 && (
-            <>
+            <RightPaddedWithComma>
               <Color bold green>
                 {snapshotsAdded} written
               </Color>
-              ,{' '}
-            </>
+            </RightPaddedWithComma>
           )}
           {snapshotsPassed > 0 && (
-            <>
+            <RightPaddedWithComma>
               <Color bold green>
                 {snapshotsPassed} passed
               </Color>
-              ,{' '}
-            </>
+            </RightPaddedWithComma>
           )}
           {snapshotsTotal} total
         </Box>
       </Box>
-
       <Box>
         <SummaryHeading>Time</SummaryHeading>
-
         <Time runTime={runTime} estimatedTime={estimatedTime} />
       </Box>
+
       <ProgressBar
         done={done}
         runTime={runTime}

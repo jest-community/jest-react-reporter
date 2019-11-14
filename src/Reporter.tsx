@@ -10,6 +10,7 @@ import { SnapshotStatus } from './SnapshotStatus';
 import { Summary } from './Summary';
 import { DisplayName, FormattedPath, ResultHeader, Runs } from './shared';
 import { PostMessage } from './PostMessage';
+import { VerboseTestList } from './VerboseTests';
 
 type ConsoleBuffer = NonNullable<TestResult['console']>;
 type LogType = ConsoleBuffer[0]['type'];
@@ -94,6 +95,10 @@ const CompletedTests: React.FC<{
         {completedTests.map(({ testResult, config }) => (
           <React.Fragment key={testResult.testFilePath + config.name}>
             <ResultHeader config={config} testResult={testResult} />
+            <VerboseTestList
+              testResult={testResult}
+              globalConfig={globalConfig}
+            />
             <TestConsoleOutput
               console={testResult.console}
               verbose={globalConfig.verbose}
