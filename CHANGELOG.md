@@ -1,3 +1,11 @@
+## [1.1.10](https://github.com/jest-community/jest-react-reporter/compare/v1.1.9...v1.1.10) (2019-11-14)
+
+### Bug Fixes
+
+- respect `verbose` config
+  ([14f9ab7](https://github.com/jest-community/jest-react-reporter/commit/14f9ab7a28be4a19b202a123ea21f2c0c50e8588)),
+  closes [#6](https://github.com/jest-community/jest-react-reporter/issues/6)
+
 ## [1.1.9](https://github.com/jest-community/jest-react-reporter/compare/v1.1.8...v1.1.9) (2019-11-13)
 
 ### Bug Fixes
