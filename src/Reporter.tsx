@@ -222,6 +222,27 @@ const RunningTests: React.FC<{
   );
 };
 
+const Exiter: React.FC<{ done: boolean }> = ({ done }) => {
+  const { exit } = useApp();
+
+  const [shouldExit, setShouldExit] = React.useState(false);
+
+  // use a separate effect to ensure output is properly flushed. This _might_ be a bug in Ink, not sure
+  React.useEffect(() => {
+    if (done) {
+      setShouldExit(true);
+    }
+  }, [done, exit]);
+
+  React.useEffect(() => {
+    if (shouldExit) {
+      exit();
+    }
+  }, [exit, shouldExit]);
+
+  return null;
+};
+
 const Reporter: React.FC<Props> = ({
   register,
   globalConfig,
@@ -247,13 +268,6 @@ const Reporter: React.FC<Props> = ({
     state;
   const { estimatedTime = 0 } = options;
 
-  const { exit } = useApp();
-  React.useEffect(() => {
-    if (done) {
-      setImmediate(exit);
-    }
-  }, [done, exit]);
-
   const summary = (
     <Summary
       aggregatedResults={aggregatedResults}
@@ -278,6 +292,7 @@ const Reporter: React.FC<Props> = ({
       />
       <RunningTests tests={currentTests} width={width} />
       {done ? null : summary}
+      <Exiter done={done} />
     </Box>
   );
 };
