@@ -75,7 +75,10 @@
     "reporters": [
       "<rootDir>/"
     ],
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "testPathIgnorePatterns": [
+      "lib/"
+    ]
   },
   "commitlint": {
     "extends": [
