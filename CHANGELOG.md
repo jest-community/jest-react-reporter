@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/jest-community/jest-react-reporter/compare/v2.0.0...v2.0.1) (2020-05-23)
+
+
+### Bug Fixes
+
+* disable `esModuleInterop` ([074ff80](https://github.com/jest-community/jest-react-reporter/commit/074ff80f790e0dc8d741bb9893d59d31825ffe92))
+
 # [2.0.0](https://github.com/jest-community/jest-react-reporter/compare/v1.1.10...v2.0.0) (2020-05-23)
 
 
