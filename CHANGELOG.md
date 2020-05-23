@@ -1,3 +1,18 @@
+# [2.0.0](https://github.com/jest-community/jest-react-reporter/compare/v1.1.10...v2.0.0) (2020-05-23)
+
+
+### Bug Fixes
+
+* build with (patched) ncc ([146370d](https://github.com/jest-community/jest-react-reporter/commit/146370dd6a3a1908766c98b33434261b185ef4c3))
+* update dependencies ([f2e12da](https://github.com/jest-community/jest-react-reporter/commit/f2e12da36d9203af4763e8c805548160e8bd92e6))
+* use `import type` syntax ([8ff117c](https://github.com/jest-community/jest-react-reporter/commit/8ff117c93c7a9a05b7d7883bac74489bf9d06ee1))
+
+
+### BREAKING CHANGES
+
+* do not emit type information
+* drop support for Node 8
+
 ## [1.1.10](https://github.com/jest-community/jest-react-reporter/compare/v1.1.9...v1.1.10) (2019-11-14)
 
 ### Bug Fixes
