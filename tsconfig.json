@@ -10,7 +10,7 @@
     "importsNotUsedAsValues": "error",
     "noImplicitReturns": true,
     "strict": true,
-    "esModuleInterop": true,
+    "esModuleInterop": false,
     "forceConsistentCasingInFileNames": true,
     "outDir": "dist/"
   },

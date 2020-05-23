@@ -1,7 +1,7 @@
 import * as path from 'path';
 import * as React from 'react';
 import { Box, Color, ColorProps, Static, render, useApp, useStdout } from 'ink';
-import slash from 'slash';
+import slash = require('slash');
 import type { Config } from '@jest/types';
 import type { AggregatedResult, TestResult } from '@jest/test-result';
 import {

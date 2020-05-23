@@ -25,7 +25,7 @@ module.exports = {
   },
   rules: {
     '@typescript-eslint/array-type': ['error', { default: 'array-simple' }],
-    '@typescript-eslint/no-require-imports': 'error',
+    '@typescript-eslint/no-require-imports': 'off',
     '@typescript-eslint/ban-ts-ignore': 'warn',
     '@typescript-eslint/ban-types': 'error',
     '@typescript-eslint/no-unused-vars': 'error',
@@ -61,12 +61,6 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['*.js'],
-      rules: {
-        '@typescript-eslint/no-require-imports': 'off',
-      },
-    },
-    {
       files: 'src/**/*',
       parserOptions: {
         sourceType: 'module',
@@ -75,7 +69,6 @@ module.exports = {
     {
       files: ['.eslintrc.js', 'babel.config.js'],
       rules: {
-        '@typescript-eslint/no-require-imports': 'off',
         'import/no-commonjs': 'off',
       },
     },

@@ -2,8 +2,8 @@ import * as React from 'react';
 import { Box, Color, ColorProps } from 'ink';
 import type { TestResult } from '@jest/test-result';
 import type { Config } from '@jest/types';
-import chalk from 'chalk';
-import slash from 'slash';
+import chalk = require('chalk');
+import slash = require('slash');
 import { relativePath } from './utils';
 
 export const Arrow: React.FC = () => <>{' \u203A '}</>;
