@@ -5,12 +5,12 @@
   "repository": "jest-community/jest-react-reporter",
   "license": "MIT",
   "author": "Simen Bekkhus <sbekkhus91@gmail.com>",
-  "main": "lib/index.js",
+  "main": "dist/index.js",
   "files": [
-    "lib/"
+    "dist/"
   ],
   "scripts": {
-    "build": "babel --extensions .js,.ts,.tsx src --out-dir lib",
+    "build": "tsc -p .",
     "lint": "eslint . --ignore-pattern '!.eslintrc.js' --ext js,ts,tsx",
     "prepare": "yarn build",
     "prettylint": "prettier README.md package.json --check",
@@ -39,12 +39,13 @@
     "trailingComma": "all"
   },
   "jest": {
+    "preset": "ts-jest",
     "reporters": [
       "<rootDir>/"
     ],
     "testEnvironment": "node",
     "testPathIgnorePatterns": [
-      "lib/"
+      "dist/"
     ]
   },
   "dependencies": {
@@ -58,11 +59,6 @@
     "slash": "^3.0.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.7.0",
-    "@babel/core": "^7.7.2",
-    "@babel/preset-env": "^7.7.1",
-    "@babel/preset-react": "^7.7.0",
-    "@babel/preset-typescript": "^7.7.2",
     "@commitlint/cli": "^8.2.0",
     "@commitlint/config-conventional": "^8.2.0",
     "@semantic-release/changelog": "^5.0.1",
@@ -72,7 +68,6 @@
     "@types/react": "^16.9.11",
     "@typescript-eslint/eslint-plugin": "^2.34.0",
     "@typescript-eslint/parser": "^2.34.0",
-    "babel-jest": "^26.0.1",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.5.0",
     "eslint-plugin-import": "^2.18.2",
@@ -86,6 +81,7 @@
     "lint-staged": "^10.2.6",
     "prettier": "^2.0.5",
     "semantic-release": "^17.0.7",
+    "ts-jest": "^26.0.0",
     "typescript": "^3.7.2"
   },
   "peerDependencies": {

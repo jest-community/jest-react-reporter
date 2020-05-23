@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
-    "lib": ["es2016", "dom"],
+    "lib": ["es2017", "dom"],
+    "target": "es2017",
     "module": "commonjs",
     "moduleResolution": "node",
     "jsx": "react",
@@ -11,7 +12,7 @@
     "strict": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "outDir": "lib/"
+    "outDir": "dist/"
   },
   "include": ["src/**/*"],
   "exclude": ["**/__tests__/**"]
