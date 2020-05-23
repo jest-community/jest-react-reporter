@@ -2,10 +2,14 @@ import * as path from 'path';
 import * as React from 'react';
 import { Box, Color, ColorProps, Static, render, useApp, useStdout } from 'ink';
 import slash from 'slash';
-import { Config } from '@jest/types';
-import { AggregatedResult, TestResult } from '@jest/test-result';
-import { BaseReporter, ReporterOnStartOptions } from '@jest/reporters';
-import { Context, Test } from '@jest/reporters/build/types';
+import type { Config } from '@jest/types';
+import type { AggregatedResult, TestResult } from '@jest/test-result';
+import {
+  BaseReporter,
+  Context,
+  ReporterOnStartOptions,
+  Test,
+} from '@jest/reporters';
 import { SnapshotStatus } from './SnapshotStatus';
 import { Summary } from './Summary';
 import { DisplayName, FormattedPath, ResultHeader, Runs } from './shared';

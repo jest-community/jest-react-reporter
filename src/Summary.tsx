@@ -1,5 +1,5 @@
-import { SummaryOptions } from '@jest/reporters/build/types';
-import { AggregatedResult } from '@jest/test-result';
+import type { SummaryOptions } from '@jest/reporters';
+import type { AggregatedResult } from '@jest/test-result';
 import { pluralize } from 'jest-util';
 import * as React from 'react';
 import { Box, Color, Text } from 'ink';

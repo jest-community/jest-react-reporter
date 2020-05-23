@@ -1,6 +1,6 @@
-import { AggregatedResult } from '@jest/test-result';
-import { Config } from '@jest/types';
-import { Context } from '@jest/reporters/build/types';
+import type { AggregatedResult } from '@jest/test-result';
+import type { Config } from '@jest/types';
+import type { Context } from '@jest/reporters';
 import { testPathPatternToRegExp } from 'jest-util';
 import * as React from 'react';
 import { Box, Color, Text } from 'ink';

@@ -1,11 +1,12 @@
 {
   "compilerOptions": {
+    "lib": ["es2016", "dom"],
     "module": "commonjs",
     "moduleResolution": "node",
     "jsx": "react",
-    "declaration": true,
-    "emitDeclarationOnly": true,
+    "declaration": false,
     "isolatedModules": true,
+    "importsNotUsedAsValues": "error",
     "noImplicitReturns": true,
     "strict": true,
     "esModuleInterop": true,

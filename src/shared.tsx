@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Box, Color, ColorProps } from 'ink';
-import { TestResult } from '@jest/test-result';
-import { Config } from '@jest/types';
+import type { TestResult } from '@jest/test-result';
+import type { Config } from '@jest/types';
 import chalk from 'chalk';
 import slash from 'slash';
 import { relativePath } from './utils';

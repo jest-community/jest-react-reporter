@@ -1,5 +1,5 @@
 import * as path from 'path';
-import { Config } from '@jest/types';
+import type { Config } from '@jest/types';
 
 export const relativePath = (
   config: Config.GlobalConfig | Config.ProjectConfig,

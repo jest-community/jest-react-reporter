@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Box, Color, Text } from 'ink';
-import { Config } from '@jest/types';
+import type { Config } from '@jest/types';
 import { pluralize } from 'jest-util';
-import { SnapshotSummary as SnapshotSummaryType } from '@jest/test-result';
+import type { SnapshotSummary as SnapshotSummaryType } from '@jest/test-result';
 import { Arrow, Dot, DownArrow, FormatFullTestPath } from './shared';
 
 const SnapshotSummary: React.FC<{

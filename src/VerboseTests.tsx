@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Box, Color, Text } from 'ink';
-import { Config } from '@jest/types';
-import { AssertionResult, Suite, TestResult } from '@jest/test-result';
+import type { Config } from '@jest/types';
+import type { AssertionResult, Suite, TestResult } from '@jest/test-result';
 import { VerboseReporter } from '@jest/reporters';
 import { specialChars } from 'jest-util';
 
