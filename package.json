@@ -12,7 +12,7 @@
   "scripts": {
     "build": "ncc build src/index.ts --external @jest/reporters --minify --no-source-map-register",
     "build:watch": "ncc build src/index.ts --external @jest/reporters --watch",
-    "lint": "eslint . --ignore-pattern '!.eslintrc.js' --ext js,ts,tsx",
+    "lint": "eslint . --ignore-pattern '!.eslintrc.js'",
     "prepare": "yarn build",
     "prettylint": "prettier README.md package.json --check",
     "test": "jest",

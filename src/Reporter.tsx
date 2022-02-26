@@ -233,13 +233,8 @@ const Reporter: React.FC<Props> = ({
   const { stdout } = useStdout();
   const width = stdout.columns;
 
-  const {
-    currentTests,
-    completedTests,
-    aggregatedResults,
-    done,
-    contexts,
-  } = state;
+  const { currentTests, completedTests, aggregatedResults, done, contexts } =
+    state;
   const { estimatedTime = 0 } = options;
 
   const { exit } = useApp();

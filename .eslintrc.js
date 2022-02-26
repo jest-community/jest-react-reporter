@@ -26,7 +26,7 @@ module.exports = {
   rules: {
     '@typescript-eslint/array-type': ['error', { default: 'array-simple' }],
     '@typescript-eslint/no-require-imports': 'off',
-    '@typescript-eslint/ban-ts-ignore': 'warn',
+    '@typescript-eslint/prefer-ts-expect-error': 'error',
     '@typescript-eslint/ban-types': 'error',
     '@typescript-eslint/no-unused-vars': 'error',
     'no-else-return': 'error',

@@ -28,6 +28,8 @@ jobs:
           cache: yarn
       - name: install
         run: yarn
+      - name: run eslint
+        run: yarn lint
       - name: run prettylint
         run: yarn prettylint
       - name: run typecheck
