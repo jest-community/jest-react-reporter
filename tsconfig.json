@@ -10,7 +10,8 @@
     "importsNotUsedAsValues": "error",
     "noImplicitReturns": true,
     "strict": true,
-    "esModuleInterop": false,
+    // ink requires this
+    "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "outDir": "dist/"
   },
