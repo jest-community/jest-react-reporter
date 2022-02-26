@@ -1,6 +1,6 @@
 import * as path from 'path';
 import * as React from 'react';
-import { Box, Color, ColorProps, Static, render, useApp, useStdout } from 'ink';
+import { Box, Static, Text, TextProps, render, useApp, useStdout } from 'ink';
 import slash = require('slash');
 import type { Config } from '@jest/types';
 import type { AggregatedResult, TestResult } from '@jest/test-result';
@@ -19,14 +19,16 @@ import { VerboseTestList } from './VerboseTests';
 type ConsoleBuffer = NonNullable<TestResult['console']>;
 type LogType = ConsoleBuffer[0]['type'];
 
-const TitleBullet = () => <Color bold>&#9679;</Color>;
+const TitleBullet = () => <Text bold>&#9679;</Text>;
 
-const ColoredConsole: React.FC<ColorProps & { type: LogType }> = ({
-  type,
-  ...props
-}: {
-  type: LogType;
-}) => <Color yellow={type === 'warn'} red={type === 'error'} {...props} />;
+const ColoredConsole: React.FC<
+  Omit<TextProps, 'color'> & { type: LogType }
+> = ({ type, ...props }: { type: LogType }) => (
+  <Text
+    color={type === 'warn' ? 'yellow' : type === 'error' ? 'red' : undefined}
+    {...props}
+  />
+);
 
 const TestConsoleOutput = ({
   console,
@@ -52,11 +54,11 @@ const TestConsoleOutput = ({
       <Box key={index} flexDirection="column" paddingBottom={1}>
         <Box>
           {TITLE_INDENT}{' '}
-          <ColoredConsole type={type} dim>
+          <ColoredConsole type={type} dimColor>
             console.
             {type}
           </ColoredConsole>{' '}
-          <Color dim>{origin}</Color>
+          <Text dimColor>{origin}</Text>
         </Box>
         <ColoredConsole type={type}>{message}</ColoredConsole>
       </Box>
@@ -95,8 +97,8 @@ const CompletedTests: React.FC<{
 
   return (
     <Box paddingBottom={1} flexDirection="column">
-      <Static>
-        {completedTests.map(({ testResult, config }) => (
+      <Static items={completedTests}>
+        {({ testResult, config }) => (
           <React.Fragment key={testResult.testFilePath + config.name}>
             <ResultHeader config={config} testResult={testResult} />
             <VerboseTestList
@@ -114,7 +116,7 @@ const CompletedTests: React.FC<{
               afterUpdate={didUpdate}
             />
           </React.Fragment>
-        ))}
+        )}
       </Static>
     </Box>
   );
@@ -231,7 +233,7 @@ const Reporter: React.FC<Props> = ({
   }, [register]);
 
   const { stdout } = useStdout();
-  const width = stdout.columns;
+  const width = stdout?.columns ?? 80;
 
   const { currentTests, completedTests, aggregatedResults, done, contexts } =
     state;

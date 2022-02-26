@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Box, Color, ColorProps } from 'ink';
+import { Box, Text, TextProps } from 'ink';
 import type { TestResult } from '@jest/test-result';
 import type { Config } from '@jest/types';
 import chalk = require('chalk');
@@ -12,26 +12,23 @@ export const DownArrow: React.FC = () => <>{' \u21B3 '}</>;
 
 const pad = (string: string) => (chalk.supportsColor ? ` ${string} ` : string);
 
-const PaddedColor: React.FC<ColorProps> = ({ children, ...props }) => (
+const PaddedText: React.FC<TextProps> = ({ children, ...props }) => (
   <Box paddingRight={1}>
-    <Color {...props}>{children}</Color>
+    <Text {...props}>{children}</Text>
   </Box>
 );
 
-const Status: React.FC<ColorProps & { text: string }> = ({
-  text,
-  ...props
-}) => (
-  <PaddedColor inverse bold {...props}>
+const Status: React.FC<TextProps & { text: string }> = ({ text, ...props }) => (
+  <PaddedText inverse bold {...props}>
     {pad(text)}
-  </PaddedColor>
+  </PaddedText>
 );
 
-const Fails: React.FC = () => <Status red text="FAIL" />;
+const Fails: React.FC = () => <Status color="red" text="FAIL" />;
 
-const Pass: React.FC = () => <Status green text="PASS" />;
+const Pass: React.FC = () => <Status color="green" text="PASS" />;
 
-export const Runs: React.FC = () => <Status yellow text="RUNS" />;
+export const Runs: React.FC = () => <Status color="yellow" text="RUNS" />;
 
 export const DisplayName: React.FC<{
   config: Config.ProjectConfig;
@@ -43,18 +40,18 @@ export const DisplayName: React.FC<{
 
   if (typeof displayName === 'string') {
     return (
-      <PaddedColor white inverse reset>
+      <PaddedText color="white" inverse>
         {displayName}
-      </PaddedColor>
+      </PaddedText>
     );
   }
 
   const { name, color } = displayName;
 
   return (
-    <PaddedColor {...{ [color]: true }} inverse reset>
+    <PaddedText color={color} inverse>
       {name}
-    </PaddedColor>
+    </PaddedText>
   );
 };
 
@@ -97,8 +94,8 @@ export const FormattedPath: React.FC<{
   if (`${dirname}/${basename}`.length <= maxLength) {
     return (
       <>
-        <Color dim>{dirname}/</Color>
-        <Color bold>{basename}</Color>
+        <Text dimColor>{dirname}/</Text>
+        <Text bold>{basename}</Text>
       </>
     );
   }
@@ -113,8 +110,8 @@ export const FormattedPath: React.FC<{
     )}`;
     return (
       <>
-        <Color dim>{dirname}/</Color>
-        <Color bold>{basename}</Color>
+        <Text dimColor>{dirname}/</Text>
+        <Text bold>{basename}</Text>
       </>
     );
   }
@@ -122,17 +119,17 @@ export const FormattedPath: React.FC<{
   if (basenameLength + 4 === maxLength) {
     return (
       <>
-        <Color dim>…/</Color>
-        <Color bold>{basename}</Color>
+        <Text dimColor>…/</Text>
+        <Text bold>{basename}</Text>
       </>
     );
   }
 
   // can't fit dirname, but can fit trimmed basename
   return (
-    <Color bold>
+    <Text bold>
       …{basename.slice(basename.length - maxLength - 4, basename.length)}
-    </Color>
+    </Text>
   );
 };
 

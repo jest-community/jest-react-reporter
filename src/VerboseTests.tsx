@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Box, Color, Text } from 'ink';
+import { Box, Text } from 'ink';
 import type { Config } from '@jest/types';
 import type { AssertionResult, Suite, TestResult } from '@jest/test-result';
 import { VerboseReporter } from '@jest/reporters';
@@ -11,15 +11,15 @@ const Status: React.FC<{ status: AssertionResult['status'] }> = ({
   status,
 }) => {
   if (status === 'failed') {
-    return <Color red>{ICONS.failed}</Color>;
+    return <Text color="red">{ICONS.failed}</Text>;
   }
   if (status === 'pending') {
-    return <Color yellow>{ICONS.pending}</Color>;
+    return <Text color="yellow">{ICONS.pending}</Text>;
   }
   if (status === 'todo') {
-    return <Color magenta>{ICONS.todo}</Color>;
+    return <Text color="magenta">{ICONS.todo}</Text>;
   }
-  return <Color green>{ICONS.success}</Color>;
+  return <Text color="green">{ICONS.success}</Text>;
 };
 
 const TestLine: React.FC<{ test: AssertionResult; indentation: number }> = ({
@@ -30,10 +30,10 @@ const TestLine: React.FC<{ test: AssertionResult; indentation: number }> = ({
     <Box paddingRight={1}>
       <Status status={test.status} />
     </Box>
-    <Color dim>{test.title}</Color>
+    <Text dimColor>{test.title}</Text>
     {test.duration ? (
       <Box paddingLeft={1}>
-        <Color dim>({test.duration.toFixed(0)}ms)</Color>
+        <Text dimColor>({test.duration.toFixed(0)}ms)</Text>
       </Box>
     ) : null}
   </Box>
@@ -46,9 +46,9 @@ const NotExpandedTestLine: React.FC<{
     <Box paddingRight={1}>
       <Status status={test.status} />
     </Box>
-    <Color dim>
+    <Text dimColor>
       {test.status === 'pending' ? 'skipped' : test.status} {test.title}
-    </Color>
+    </Text>
   </Box>
 );
 

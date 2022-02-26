@@ -2,7 +2,7 @@ import type { SummaryOptions } from '@jest/reporters';
 import type { AggregatedResult } from '@jest/test-result';
 import { pluralize } from 'jest-util';
 import * as React from 'react';
-import { Box, Color, Text } from 'ink';
+import { Box, Text } from 'ink';
 import { useCounter } from './hooks';
 
 const PROGRESS_BAR_WIDTH = 40;
@@ -66,25 +66,25 @@ export const Summary: React.FC<{
         <Box>
           {suitesFailed > 0 && (
             <>
-              <Color bold red>
+              <Text bold color="red">
                 {suitesFailed} failed
-              </Color>
+              </Text>
               ,{' '}
             </>
           )}
           {suitesPending > 0 && (
             <>
-              <Color bold yellow>
+              <Text bold color="yellow">
                 {suitesPending} skipped
-              </Color>
+              </Text>
               ,{' '}
             </>
           )}
           {suitesPassed > 0 && (
             <>
-              <Color bold green>
+              <Text bold color="green">
                 {suitesPassed} passed
-              </Color>
+              </Text>
               ,{' '}
             </>
           )}
@@ -97,31 +97,31 @@ export const Summary: React.FC<{
         <Box>
           {testsFailed > 0 && (
             <RightPaddedWithComma>
-              <Color bold red>
+              <Text bold color="red">
                 {testsFailed} failed
-              </Color>
+              </Text>
             </RightPaddedWithComma>
           )}
           {testsPending > 0 && (
             <>
-              <Color bold yellow>
+              <Text bold color="yellow">
                 {testsPending} skipped
-              </Color>
+              </Text>
               ,{' '}
             </>
           )}
           {testsTodo > 0 && (
             <RightPaddedWithComma>
-              <Color bold magenta>
+              <Text bold color="magenta">
                 {testsTodo} todo
-              </Color>
+              </Text>
             </RightPaddedWithComma>
           )}
           {testsPassed > 0 && (
             <RightPaddedWithComma>
-              <Color bold green>
+              <Text bold color="green">
                 {testsPassed} passed
-              </Color>
+              </Text>
             </RightPaddedWithComma>
           )}
           {testsTotal} total
@@ -132,59 +132,59 @@ export const Summary: React.FC<{
         <Box>
           {snapshotsFailed > 0 && (
             <RightPaddedWithComma>
-              <Color bold red>
+              <Text bold color="red">
                 {snapshotsFailed} failed
-              </Color>
+              </Text>
             </RightPaddedWithComma>
           )}
           {snapshotsOutdated > 0 && !snapshotsDidUpdate && (
             <RightPaddedWithComma>
-              <Color bold yellow>
+              <Text bold color="yellow">
                 {snapshotsOutdated} obsolete
-              </Color>
+              </Text>
             </RightPaddedWithComma>
           )}
           {snapshotsOutdated > 0 && snapshotsDidUpdate && (
             <>
-              <Color bold green>
+              <Text bold color="green">
                 {snapshotsOutdated} removed
-              </Color>
+              </Text>
               ,{' '}
             </>
           )}
           {snapshotsFilesRemoved > 0 && !snapshotsDidUpdate && (
             <RightPaddedWithComma>
-              <Color bold yellow>
+              <Text bold color="yellow">
                 {pluralize('file', snapshotsFilesRemoved)} obsolete
-              </Color>
+              </Text>
             </RightPaddedWithComma>
           )}
           {snapshotsFilesRemoved > 0 && snapshotsDidUpdate && (
             <RightPaddedWithComma>
-              <Color bold green>
+              <Text bold color="green">
                 {pluralize('file', snapshotsFilesRemoved)} removed
-              </Color>
+              </Text>
             </RightPaddedWithComma>
           )}
           {snapshotsUpdated > 0 && (
             <RightPaddedWithComma>
-              <Color bold green>
+              <Text bold color="green">
                 {snapshotsUpdated} updated
-              </Color>
+              </Text>
             </RightPaddedWithComma>
           )}
           {snapshotsAdded > 0 && (
             <RightPaddedWithComma>
-              <Color bold green>
+              <Text bold color="green">
                 {snapshotsAdded} written
-              </Color>
+              </Text>
             </RightPaddedWithComma>
           )}
           {snapshotsPassed > 0 && (
             <RightPaddedWithComma>
-              <Color bold green>
+              <Text bold color="green">
                 {snapshotsPassed} passed
-              </Color>
+              </Text>
             </RightPaddedWithComma>
           )}
           {snapshotsTotal} total
@@ -232,8 +232,8 @@ const ProgressBar: React.FC<{
 
   return (
     <Box>
-      <Color green>{'█'.repeat(length)}</Color>
-      <Color white>{'█'.repeat(availableWidth - length)}</Color>
+      <Text color="green">{'█'.repeat(length)}</Text>
+      <Text color="white">{'█'.repeat(availableWidth - length)}</Text>
     </Box>
   );
 };
@@ -245,9 +245,9 @@ const Time: React.FC<{
   // If we are more than one second over the estimated time, highlight it.
   const renderedTime =
     estimatedTime && runTime >= estimatedTime + 1 ? (
-      <Color bold yellow>
+      <Text bold color="yellow">
         {runTime}s
-      </Color>
+      </Text>
     ) : (
       <Text>{runTime}s</Text>
     );
