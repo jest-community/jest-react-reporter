@@ -1,3 +1,22 @@
+# [3.0.0](https://github.com/jest-community/jest-react-reporter/compare/v2.0.1...v3.0.0) (2022-02-26)
+
+
+### Bug Fixes
+
+* **deps:** update jest monorepo to v27 (major) ([#31](https://github.com/jest-community/jest-react-reporter/issues/31)) ([bc9d09f](https://github.com/jest-community/jest-react-reporter/commit/bc9d09f3bfa2672b33498d3607e1c0f91b32ad97))
+* put string inside Text ([3481e50](https://github.com/jest-community/jest-react-reporter/commit/3481e5016349ce32bce10d1ff75bdc3ee171cd7b))
+
+
+### Features
+
+* drop node 10 and 13 ([abccf17](https://github.com/jest-community/jest-react-reporter/commit/abccf17cb29292f8f7ddddd4bce72202456e6fd9))
+* update ink to v3 ([#41](https://github.com/jest-community/jest-react-reporter/issues/41)) ([15cb8b9](https://github.com/jest-community/jest-react-reporter/commit/15cb8b96c1db49128df8f7030a1702993ed82dba))
+
+
+### BREAKING CHANGES
+
+* Remove support for node 10 and 13
+
 ## [2.0.1](https://github.com/jest-community/jest-react-reporter/compare/v2.0.0...v2.0.1) (2020-05-23)
 
 
