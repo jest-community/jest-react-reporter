@@ -15,16 +15,10 @@
     "build": "yarn ncc-build --minify --no-source-map-register",
     "build:watch": "yarn ncc-build --watch",
     "lint": "eslint . --ignore-pattern '!.eslintrc.js'",
-    "prepare": "yarn build",
+    "prepare": " husky install && yarn build",
     "prettylint": "prettier README.md package.json --check",
     "test": "jest",
     "typecheck": "tsc -p ."
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "commit-msg": "commitlint -e $HUSKY_GIT_PARAMS"
-    }
   },
   "commitlint": {
     "extends": [
@@ -75,7 +69,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.16.0",
     "eslint-plugin-react-hooks": "^4.0.2",
-    "husky": "^4.2.5",
+    "husky": "^7.0.0",
     "ink": "^3.2.0",
     "jest": "^27.0.0",
     "jest-util": "^27.0.0",
