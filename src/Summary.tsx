@@ -255,7 +255,9 @@ const Time: React.FC<{
   return (
     <Box>
       {renderedTime}
-      {runTime < estimatedTime ? <>, estimated {estimatedTime}s</> : null}
+      {runTime < estimatedTime ? (
+        <Text>, estimated {estimatedTime}s</Text>
+      ) : null}
     </Box>
   );
 };
