@@ -3,7 +3,7 @@ import type { Config } from '@jest/types';
 import type { Context } from '@jest/reporters';
 import { testPathPatternToRegExp } from 'jest-util';
 import * as React from 'react';
-import { Box, Color, Text } from 'ink';
+import { Box, Text } from 'ink';
 
 const LeftPadded: React.FC = ({ children }) => (
   <Box paddingLeft={1}>{children}</Box>
@@ -17,7 +17,7 @@ const TestInfo: React.FC<{ config: Config.GlobalConfig }> = ({ config }) => {
   if (config.runTestsByPath) {
     return (
       <LeftPadded>
-        <Color dim>within paths</Color>
+        <Text dimColor>within paths</Text>
       </LeftPadded>
     );
   }
@@ -25,7 +25,7 @@ const TestInfo: React.FC<{ config: Config.GlobalConfig }> = ({ config }) => {
   if (config.onlyChanged) {
     return (
       <LeftPadded>
-        <Color dim>related to changed files</Color>
+        <Text dimColor>related to changed files</Text>
       </LeftPadded>
     );
   }
@@ -34,9 +34,9 @@ const TestInfo: React.FC<{ config: Config.GlobalConfig }> = ({ config }) => {
     return (
       <Box>
         <HorizontallyPadded>
-          <Color dim>
+          <Text dimColor>
             {config.findRelatedTests ? 'related to files matching' : 'matching'}
-          </Color>
+          </Text>
         </HorizontallyPadded>
         <Text>
           {testPathPatternToRegExp(config.testPathPattern).toString()}
@@ -57,7 +57,7 @@ const NameInfo: React.FC<{ config: Config.GlobalConfig }> = ({ config }) => {
     return (
       <>
         <HorizontallyPadded>
-          <Color dim>with tests matching</Color>
+          <Text dimColor>with tests matching</Text>
         </HorizontallyPadded>
         <Text>&quot;{config.testNamePattern}&quot;</Text>
       </>
@@ -74,10 +74,10 @@ const ContextInfo: React.FC<{ numberOfContexts: number }> = ({
     return (
       <>
         <HorizontallyPadded>
-          <Color dim>in</Color>
+          <Text dimColor>in</Text>
         </HorizontallyPadded>
         <Text>{numberOfContexts}</Text>
-        <Color dim> projects</Color>
+        <Text dimColor> projects</Text>
       </>
     );
   }
@@ -96,19 +96,19 @@ export const PostMessage: React.FC<{
 
   if (aggregatedResults.wasInterrupted) {
     return (
-      <Color bold red>
+      <Text bold color="red">
         Test run was interrupted.
-      </Color>
+      </Text>
     );
   }
 
   return (
     <Box>
-      <Color dim>Ran all test suites</Color>
+      <Text dimColor>Ran all test suites</Text>
       <TestInfo config={globalConfig} />
       <NameInfo config={globalConfig} />
       <ContextInfo numberOfContexts={contexts.size} />
-      <Color dim>.</Color>
+      <Text dimColor>.</Text>
     </Box>
   );
 };

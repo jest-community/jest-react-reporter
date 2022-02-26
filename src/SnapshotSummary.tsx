@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Box, Color, Text } from 'ink';
+import { Box, Text } from 'ink';
 import type { Config } from '@jest/types';
 import { pluralize } from 'jest-util';
 import type { SnapshotSummary as SnapshotSummaryType } from '@jest/test-result';
@@ -14,76 +14,76 @@ const SnapshotSummary: React.FC<{
     <Text bold>Snapshot Summary</Text>
     {snapshots.added && (
       <Box>
-        <Color bold green>
+        <Text bold color="green">
           <Arrow />
           {pluralize('snapshot', snapshots.added)} written
-        </Color>{' '}
+        </Text>{' '}
         from {pluralize('test suite', snapshots.filesAdded)}.
       </Box>
     )}
     {snapshots.unmatched && (
       <Box>
-        <Color bold red>
+        <Text bold color="red">
           <Arrow />
           {pluralize('snapshot', snapshots.unmatched)} failed
-        </Color>{' '}
+        </Text>{' '}
         from {pluralize('test suite', snapshots.filesUnmatched)}.{' '}
-        <Color dim>
+        <Text dimColor>
           Inspect your code changes or {updateCommand} to update them.
-        </Color>
+        </Text>
       </Box>
     )}
     {snapshots.updated && (
       <Box>
-        <Color bold green>
+        <Text bold color="green">
           <Arrow />
           {pluralize('snapshot', snapshots.updated)} updated
-        </Color>{' '}
+        </Text>{' '}
         from {pluralize('test suite', snapshots.filesUpdated)}.
       </Box>
     )}
     {snapshots.filesRemoved &&
       (snapshots.didUpdate ? (
         <Box>
-          <Color bold green>
+          <Text bold color="green">
             <Arrow />
             {pluralize('snapshot file', snapshots.filesRemoved)} removed
-          </Color>{' '}
+          </Text>{' '}
           from {pluralize('test suite', snapshots.filesRemoved)}.
         </Box>
       ) : (
         <Box>
-          <Color bold yellow>
+          <Text bold color="yellow">
             <Arrow />
             {pluralize('snapshot file', snapshots.filesRemoved)} obsolete
-          </Color>{' '}
+          </Text>{' '}
           from {pluralize('test suite', snapshots.filesRemoved)}.{' '}
-          <Color dim>
+          <Text dimColor>
             To remove ${snapshots.filesRemoved === 1 ? 'it' : 'them all'},{' '}
             {updateCommand}.
-          </Color>
+          </Text>
         </Box>
       ))}
     {snapshots.unchecked &&
       (snapshots.didUpdate ? (
         <Box>
-          <Color bold green>
+          <Text bold color="green">
             <Arrow />
             {pluralize('snapshot', snapshots.unchecked)} removed
-          </Color>{' '}
+          </Text>{' '}
           from {pluralize('test suite', snapshots.uncheckedKeysByFile.length)}.
         </Box>
       ) : (
         <Box>
-          <Color bold yellow>
+          <Text bold color="yellow">
             <Arrow />
             {pluralize('snapshot', snapshots.unchecked)} obsolete
-          </Color>{' '}
+          </Text>{' '}
           from {pluralize('test suite', snapshots.uncheckedKeysByFile.length)}.{' '}
-          <Color dim>
+          <Text dimColor>
             To remove ${snapshots.unchecked === 1 ? 'it' : 'them all'},{' '}
             {updateCommand}.
-          </Color>
+          </Text>
         </Box>
       ))}
     {snapshots.unchecked &&

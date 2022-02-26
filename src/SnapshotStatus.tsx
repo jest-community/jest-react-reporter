@@ -1,30 +1,30 @@
 import type { TestResult } from '@jest/test-result';
 
 import * as React from 'react';
-import { Box, Color } from 'ink';
+import { Box, Text } from 'ink';
 
 import { pluralize } from 'jest-util';
 import { Arrow, Dot } from './shared';
 
-const FailColor: React.FC = ({ children }) => (
-  <Color bold red>
+const FailText: React.FC = ({ children }) => (
+  <Text bold color="red">
     {children}
-  </Color>
+  </Text>
 );
 const SnapshotAdded: React.FC = ({ children }) => (
-  <Color bold green>
+  <Text bold color="green">
     {children}
-  </Color>
+  </Text>
 );
 const SnapshotUpdated: React.FC = ({ children }) => (
-  <Color bold green>
+  <Text bold color="green">
     {children}
-  </Color>
+  </Text>
 );
 const SnapshotOutdated: React.FC = ({ children }) => (
-  <Color bold yellow>
+  <Text bold color="yellow">
     {children}
-  </Color>
+  </Text>
 );
 
 export const SnapshotStatus: React.FC<{
@@ -43,9 +43,9 @@ export const SnapshotStatus: React.FC<{
       </SnapshotUpdated>
     )}
     {snapshot.unmatched > 0 && (
-      <FailColor>
+      <FailText>
         <Arrow /> {pluralize('snapshot', snapshot.unmatched)} failed.
-      </FailColor>
+      </FailText>
     )}
     {snapshot.unchecked > 0 ? (
       afterUpdate ? (
