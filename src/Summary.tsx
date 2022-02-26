@@ -65,31 +65,31 @@ export const Summary: React.FC<{
         <SummaryHeading>Test Suites</SummaryHeading>
         <Box>
           {suitesFailed > 0 && (
-            <>
+            <Text>
               <Text bold color="red">
                 {suitesFailed} failed
               </Text>
               ,{' '}
-            </>
+            </Text>
           )}
           {suitesPending > 0 && (
-            <>
+            <Text>
               <Text bold color="yellow">
                 {suitesPending} skipped
               </Text>
               ,{' '}
-            </>
+            </Text>
           )}
           {suitesPassed > 0 && (
-            <>
+            <Text>
               <Text bold color="green">
                 {suitesPassed} passed
               </Text>
               ,{' '}
-            </>
+            </Text>
           )}
-          {suitesRun !== suitesTotal && `${suitesRun} of `}
-          {suitesTotal} total
+          {suitesRun !== suitesTotal && <Text>{suitesRun} of </Text>}
+          <Text>{suitesTotal} total</Text>
         </Box>
       </Box>
       <Box>
@@ -124,7 +124,7 @@ export const Summary: React.FC<{
               </Text>
             </RightPaddedWithComma>
           )}
-          {testsTotal} total
+          <Text>{testsTotal} total</Text>
         </Box>
       </Box>
       <Box>
@@ -187,7 +187,7 @@ export const Summary: React.FC<{
               </Text>
             </RightPaddedWithComma>
           )}
-          {snapshotsTotal} total
+          <Text>{snapshotsTotal} total</Text>
         </Box>
       </Box>
       <Box>
