@@ -2,8 +2,7 @@ name: Release
 on:
   push:
     branches:
-      # master and not main oon purpose
-      - master
+      - main
 
 jobs:
   release:
