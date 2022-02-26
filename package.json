@@ -103,5 +103,8 @@
       "@semantic-release/git",
       "@semantic-release/github"
     ]
+  },
+  "resolutions": {
+    "npm": "7.20.6"
   }
 }
