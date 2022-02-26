@@ -2,7 +2,7 @@
 
 ## Installation
 
-```
+```bash
 $ yarn add --dev jest-react-reporter
 ```
 

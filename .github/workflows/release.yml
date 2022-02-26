@@ -2,6 +2,7 @@ name: Release
 on:
   push:
     branches:
+      # master and not main oon purpose
       - master
 
 jobs:
@@ -9,10 +10,11 @@ jobs:
     name: release
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
         with:
-          node-version: '12.x'
+          node-version: 'lts/*'
+          cache: yarn
       - name: install
         run: yarn
       - name: run prettylint
