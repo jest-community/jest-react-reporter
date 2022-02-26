@@ -5,7 +5,8 @@
   "repository": "jest-community/jest-react-reporter",
   "license": "MIT",
   "author": "Simen Bekkhus <sbekkhus91@gmail.com>",
-  "main": "dist/index.js",
+  "main": "./dist/index.js",
+  "exports": "./dist/index.js",
   "files": [
     "dist/"
   ],
