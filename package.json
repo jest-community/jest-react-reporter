@@ -18,7 +18,7 @@
     "prepare": " husky install && yarn build",
     "prettylint": "prettier README.md package.json --check",
     "test": "jest",
-    "typecheck": "tsc -p ."
+    "typecheck": "tsc -p . --noEmit"
   },
   "commitlint": {
     "extends": [
