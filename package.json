@@ -10,8 +10,9 @@
     "dist/"
   ],
   "scripts": {
-    "build": "ncc build src/index.ts --external @jest/reporters --external react-devtools-core --minify --no-source-map-register",
-    "build:watch": "ncc build src/index.ts --external @jest/reporters --external react-devtools-core --watch",
+    "ncc-build": "ncc build src/index.ts --external @jest/reporters --external react-devtools-core --external yoga-layout-prebuilt",
+    "build": "yarn ncc-build --minify --no-source-map-register",
+    "build:watch": "yarn ncc-build --watch",
     "lint": "eslint . --ignore-pattern '!.eslintrc.js'",
     "prepare": "yarn build",
     "prettylint": "prettier README.md package.json --check",
@@ -48,7 +49,8 @@
     "testEnvironment": "node"
   },
   "dependencies": {
-    "@jest/reporters": "^27.0.0"
+    "@jest/reporters": "^27.0.0",
+    "yoga-layout-prebuilt": "^1.10.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^16.0.0",
