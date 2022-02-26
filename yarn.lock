@@ -1740,21 +1740,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@yarnpkg/lockfile@npm:^1.1.0":
-  version: 1.1.0
-  resolution: "@yarnpkg/lockfile@npm:1.1.0"
-  checksum: 05b881b4866a3546861fee756e6d3812776ea47fa6eb7098f983d6d0eefa02e12b66c3fff931574120f196286a7ad4879ce02743c8bb2be36c6a576c7852083a
-  languageName: node
-  linkType: hard
-
-"@zeit/ncc@npm:^0.22.1":
-  version: 0.22.3
-  resolution: "@zeit/ncc@npm:0.22.3"
+"@vercel/ncc@npm:^0.33.3":
+  version: 0.33.3
+  resolution: "@vercel/ncc@npm:0.33.3"
   dependencies:
     node-gyp: latest
   bin:
     ncc: dist/ncc/cli.js
-  checksum: 5528bff2fe0d10437bfaac68f344069627b9cd4babb4181b92721b85150463cbc80b55d86b4282f807326193d92d6cfaabf124d9d9029cc036feba6841179369
+  checksum: 0dd73aae0df395524eac2086e23305672d907fb184a6d85249e39a6246ee1c36848b38334d279b5f8b755d3e8ba32a680043034acd3c0f28d7ec38915335509d
+  languageName: node
+  linkType: hard
+
+"@yarnpkg/lockfile@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "@yarnpkg/lockfile@npm:1.1.0"
+  checksum: 05b881b4866a3546861fee756e6d3812776ea47fa6eb7098f983d6d0eefa02e12b66c3fff931574120f196286a7ad4879ce02743c8bb2be36c6a576c7852083a
   languageName: node
   linkType: hard
 
@@ -5364,7 +5364,7 @@ __metadata:
     "@types/react": ^17.0.39
     "@typescript-eslint/eslint-plugin": ^5.0.0
     "@typescript-eslint/parser": ^5.0.0
-    "@zeit/ncc": ^0.22.1
+    "@vercel/ncc": ^0.33.3
     chalk: ^4.0.0
     eslint: ^8.0.0
     eslint-config-prettier: ^8.0.0
