@@ -3563,8 +3563,8 @@ __metadata:
   linkType: hard
 
 "eslint-plugin-react@npm:^7.16.0":
-  version: 7.29.1
-  resolution: "eslint-plugin-react@npm:7.29.1"
+  version: 7.29.2
+  resolution: "eslint-plugin-react@npm:7.29.2"
   dependencies:
     array-includes: ^3.1.4
     array.prototype.flatmap: ^1.2.5
@@ -3582,7 +3582,7 @@ __metadata:
     string.prototype.matchall: ^4.0.6
   peerDependencies:
     eslint: ^3 || ^4 || ^5 || ^6 || ^7 || ^8
-  checksum: d1d0d267d26a5eeb2ba9c3ed23982110e43858d7849b14a83f054d8581a31566cba806a16635a519c875c73c0d4c5c21d778f471c77fd39fc264ec0d1beefaec
+  checksum: fcd793c0fd8e4570dcf8f70dd4afae9882303f4a4b650e09dac2f85fdc0b28747cb97b79832f4b8f4eabdbfb9edf69dc0ff04e8b7f33e0bb8e3f024185f4b037
   languageName: node
   linkType: hard
 
@@ -8527,13 +8527,13 @@ __metadata:
   linkType: hard
 
 "string-width@npm:^5.0.0":
-  version: 5.1.0
-  resolution: "string-width@npm:5.1.0"
+  version: 5.1.1
+  resolution: "string-width@npm:5.1.1"
   dependencies:
     eastasianwidth: ^0.2.0
     emoji-regex: ^9.2.2
     strip-ansi: ^7.0.1
-  checksum: f9f84226bade99b044ece0f143ba0979bbd0b4bbb867ce2e785debf8abe99e9491382d584e51c32272ec2dc82f2fa93b212ef4fdd21c739dac8e78f7815b7dfb
+  checksum: e0e5ee972e837476ddb273f37e77e50f90f6f0895a1421f0dbe749043eb3044c5aa27dd6792fc469e0286fed51ea1c3435d002f3ac15568a4fb004a53990fb4e
   languageName: node
   linkType: hard
 
@@ -9170,11 +9170,11 @@ __metadata:
   linkType: hard
 
 "uglify-js@npm:^3.1.4":
-  version: 3.15.1
-  resolution: "uglify-js@npm:3.15.1"
+  version: 3.15.2
+  resolution: "uglify-js@npm:3.15.2"
   bin:
     uglifyjs: bin/uglifyjs
-  checksum: cf88574ec8af4d69368142a3f9fb83ac11b1344a117dff08890fcf99ed12c782c810f02e71a0c2a7e8666ea6225894f1c171cbd90e1a1fe4b2c4a198f8ad61a3
+  checksum: 5bbe848e01281032db94567f27eee3ab61ec685275c1c6825fbad55f231910fc1b47f1ceef1dc1d946e1253e946fde8b0d2809aa3ae186e4ddd6bda2f6dc7850
   languageName: node
   linkType: hard
 
@@ -9599,9 +9599,9 @@ __metadata:
   linkType: hard
 
 "yargs-parser@npm:^21.0.0":
-  version: 21.0.0
-  resolution: "yargs-parser@npm:21.0.0"
-  checksum: 1e205fca1cb7a36a1585e2b94a64e641c12741b53627d338e12747f4dca3c3610cdd9bb235040621120548dd74c3ef03a8168d52a1eabfedccbe4a62462b6731
+  version: 21.0.1
+  resolution: "yargs-parser@npm:21.0.1"
+  checksum: c3ea2ed12cad0377ce3096b3f138df8267edf7b1aa7d710cd502fe16af417bafe4443dd71b28158c22fcd1be5dfd0e86319597e47badf42ff83815485887323a
   languageName: node
   linkType: hard
 
