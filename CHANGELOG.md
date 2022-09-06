@@ -1,3 +1,16 @@
+# [4.0.0](https://github.com/jest-community/jest-react-reporter/compare/v3.0.0...v4.0.0) (2022-09-06)
+
+
+### Features
+
+* drop node 12 ([49089b5](https://github.com/jest-community/jest-react-reporter/commit/49089b566843aadd80096cf8c6f5d84e6c1d4a7d))
+* update to Jest 29 and support 27-29 in peer dependencies ([#100](https://github.com/jest-community/jest-react-reporter/issues/100)) ([a0aaa14](https://github.com/jest-community/jest-react-reporter/commit/a0aaa14b9ab18690a1d8d29009a37dbf55278c24))
+
+
+### BREAKING CHANGES
+
+* No longer support Node 12
+
 # [3.0.0](https://github.com/jest-community/jest-react-reporter/compare/v2.0.1...v3.0.0) (2022-02-26)
 
 
