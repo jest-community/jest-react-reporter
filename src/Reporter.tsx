@@ -89,35 +89,43 @@ const FailureMessage: React.FC<{
 const CompletedTests: React.FC<{
   completedTests: State['completedTests'];
   globalConfig: Config.GlobalConfig;
-}> = ({ completedTests, globalConfig }) => {
+  summary: React.ReactElement;
+  PostMessage: () => React.ReactElement;
+  done: boolean;
+}> = ({ completedTests, globalConfig, summary, PostMessage, done }) => {
   if (completedTests.length === 0) {
     return null;
   }
   const didUpdate = globalConfig.updateSnapshot === 'all';
 
+  let testOutputs = completedTests.map(({ testResult, config }) => (
+    <React.Fragment key={testResult.testFilePath + config.name}>
+      <ResultHeader config={config} testResult={testResult} />
+      <VerboseTestList testResult={testResult} globalConfig={globalConfig} />
+      <TestConsoleOutput
+        console={testResult.console}
+        verbose={globalConfig.verbose}
+        cwd={config.cwd}
+      />
+      <FailureMessage failureMessage={testResult.failureMessage} />
+      <SnapshotStatus snapshot={testResult.snapshot} afterUpdate={didUpdate} />
+    </React.Fragment>
+  ));
+
+  if (done) {
+    testOutputs = testOutputs.concat(
+      <Box paddingTop={1} key="summary">
+        {summary}
+      </Box>,
+      <React.Fragment key="postmessage">
+        <PostMessage />
+      </React.Fragment>,
+    );
+  }
+
   return (
     <Box paddingBottom={1} flexDirection="column">
-      <Static items={completedTests}>
-        {({ testResult, config }) => (
-          <React.Fragment key={testResult.testFilePath + config.name}>
-            <ResultHeader config={config} testResult={testResult} />
-            <VerboseTestList
-              testResult={testResult}
-              globalConfig={globalConfig}
-            />
-            <TestConsoleOutput
-              console={testResult.console}
-              verbose={globalConfig.verbose}
-              cwd={config.cwd}
-            />
-            <FailureMessage failureMessage={testResult.failureMessage} />
-            <SnapshotStatus
-              snapshot={testResult.snapshot}
-              afterUpdate={didUpdate}
-            />
-          </React.Fragment>
-        )}
-      </Static>
+      <Static items={testOutputs}>{ele => ele}</Static>
     </Box>
   );
 };
@@ -214,6 +222,27 @@ const RunningTests: React.FC<{
   );
 };
 
+const Exiter: React.FC<{ done: boolean }> = ({ done }) => {
+  const { exit } = useApp();
+
+  const [shouldExit, setShouldExit] = React.useState(false);
+
+  // use a separate effect to ensure output is properly flushed. This _might_ be a bug in Ink, not sure
+  React.useEffect(() => {
+    if (done) {
+      setShouldExit(true);
+    }
+  }, [done, exit]);
+
+  React.useEffect(() => {
+    if (shouldExit) {
+      exit();
+    }
+  }, [exit, shouldExit]);
+
+  return null;
+};
+
 const Reporter: React.FC<Props> = ({
   register,
   globalConfig,
@@ -239,32 +268,31 @@ const Reporter: React.FC<Props> = ({
     state;
   const { estimatedTime = 0 } = options;
 
-  const { exit } = useApp();
-  React.useEffect(() => {
-    if (done) {
-      exit();
-    }
-  }, [done, exit]);
-
+  const summary = (
+    <Summary
+      aggregatedResults={aggregatedResults}
+      options={{ estimatedTime, roundTime: true, width }}
+      done={done}
+    />
+  );
   return (
     <Box flexDirection="column">
       <CompletedTests
         completedTests={completedTests}
         globalConfig={globalConfig}
+        summary={summary}
+        done={done}
+        PostMessage={() => (
+          <PostMessage
+            aggregatedResults={aggregatedResults}
+            globalConfig={globalConfig}
+            contexts={contexts}
+          />
+        )}
       />
       <RunningTests tests={currentTests} width={width} />
-      <Summary
-        aggregatedResults={aggregatedResults}
-        options={{ estimatedTime, roundTime: true, width }}
-        done={done}
-      />
-      {done ? (
-        <PostMessage
-          aggregatedResults={aggregatedResults}
-          globalConfig={globalConfig}
-          contexts={contexts}
-        />
-      ) : null}
+      {done ? null : summary}
+      <Exiter done={done} />
     </Box>
   );
 };
