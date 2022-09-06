@@ -101,8 +101,5 @@
       "@semantic-release/github"
     ]
   },
-  "resolutions": {
-    "npm": "7.20.6"
-  },
   "packageManager": "yarn@3.2.3"
 }
