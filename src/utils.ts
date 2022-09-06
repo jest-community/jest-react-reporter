@@ -3,7 +3,7 @@ import type { Config } from '@jest/types';
 
 export const relativePath = (
   config: Config.GlobalConfig | Config.ProjectConfig,
-  testPath: Config.Path,
+  testPath: string,
 ) => {
   // this function can be called with ProjectConfigs or GlobalConfigs. GlobalConfigs
   // do not have config.cwd, only config.rootDir. Try using config.cwd, fallback

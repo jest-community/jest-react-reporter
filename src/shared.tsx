@@ -81,7 +81,7 @@ export const ResultHeader: React.FC<{
 export const FormattedPath: React.FC<{
   pad: number;
   config: Config.ProjectConfig | Config.GlobalConfig;
-  testPath: Config.Path;
+  testPath: string;
   columns: number | undefined;
 }> = ({ pad, config, testPath, columns }) => {
   const maxLength = (columns || Number.NaN) - pad;
@@ -135,7 +135,7 @@ export const FormattedPath: React.FC<{
 
 export const FormatFullTestPath: React.FC<{
   config: Config.GlobalConfig | Config.ProjectConfig;
-  testPath: Config.Path;
+  testPath: string;
 }> = ({ config, testPath }) => (
   // TODO: maybe not 9000? We just don't want to trim it
   <FormattedPath config={config} testPath={testPath} pad={0} columns={9000} />
