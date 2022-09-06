@@ -1,6 +1,6 @@
 import type { AggregatedResult } from '@jest/test-result';
 import type { Config } from '@jest/types';
-import type { Context } from '@jest/reporters';
+import type { TestContext } from '@jest/reporters';
 import { testPathPatternToRegExp } from 'jest-util';
 import * as React from 'react';
 import { Box, Text } from 'ink';
@@ -88,7 +88,7 @@ const ContextInfo: React.FC<{ numberOfContexts: number }> = ({
 export const PostMessage: React.FC<{
   aggregatedResults: AggregatedResult;
   globalConfig: Config.GlobalConfig;
-  contexts: Set<Context>;
+  contexts: Set<TestContext>;
 }> = ({ aggregatedResults, globalConfig, contexts }) => {
   if (globalConfig.silent) {
     return null;

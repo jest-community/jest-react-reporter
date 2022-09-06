@@ -6,9 +6,9 @@ import type { Config } from '@jest/types';
 import type { AggregatedResult, TestResult } from '@jest/test-result';
 import {
   BaseReporter,
-  Context,
   ReporterOnStartOptions,
   Test,
+  TestContext,
 } from '@jest/reporters';
 import { SnapshotStatus } from './SnapshotStatus';
 import { Summary } from './Summary';
@@ -99,7 +99,7 @@ const CompletedTests: React.FC<{
     <Box paddingBottom={1} flexDirection="column">
       <Static items={completedTests}>
         {({ testResult, config }) => (
-          <React.Fragment key={testResult.testFilePath + config.name}>
+          <React.Fragment key={testResult.testFilePath + config.id}>
             <ResultHeader config={config} testResult={testResult} />
             <VerboseTestList
               testResult={testResult}
@@ -132,7 +132,7 @@ type DateEvents =
         testResult: TestResult;
       };
     }
-  | { type: 'TestComplete'; payload: { contexts: Set<Context> } };
+  | { type: 'TestComplete'; payload: { contexts: Set<TestContext> } };
 
 type Props = {
   register: (cb: (events: DateEvents) => void) => void;
@@ -147,9 +147,9 @@ type State = {
     testResult: TestResult;
     config: Config.ProjectConfig;
   }>;
-  currentTests: Array<[Config.Path, Config.ProjectConfig]>;
+  currentTests: Array<[string, Config.ProjectConfig]>;
   done: boolean;
-  contexts: Set<Context>;
+  contexts: Set<TestContext>;
 };
 
 const reporterReducer: React.Reducer<State, DateEvents> = (
@@ -199,7 +199,7 @@ const RunningTests: React.FC<{
   return (
     <Box paddingBottom={1} flexDirection="column">
       {tests.map(([path, config]) => (
-        <Box key={path + config.name}>
+        <Box key={path + config.id}>
           <Runs />
           <DisplayName config={config} />
           <FormattedPath
@@ -225,7 +225,7 @@ const Reporter: React.FC<Props> = ({
     completedTests: [],
     currentTests: [],
     done: false,
-    contexts: new Set<Context>(),
+    contexts: new Set<TestContext>(),
   });
 
   React.useLayoutEffect(() => {
@@ -319,7 +319,10 @@ export default class ReactReporter extends BaseReporter {
     );
   }
 
-  async onRunComplete(contexts: Set<Context>) {
+  async onRunComplete(
+    contexts: Set<TestContext>,
+    _aggregatedResults?: AggregatedResult,
+  ) {
     this._components.forEach(cb =>
       cb({ type: 'TestComplete', payload: { contexts } }),
     );
