@@ -28,7 +28,10 @@ module.exports = {
     '@typescript-eslint/no-require-imports': 'off',
     '@typescript-eslint/prefer-ts-expect-error': 'error',
     '@typescript-eslint/ban-types': 'error',
-    '@typescript-eslint/no-unused-vars': 'error',
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      { argsIgnorePattern: '^_', caughtErrors: 'all' },
+    ],
     'no-else-return': 'error',
     'no-negated-condition': 'error',
     eqeqeq: ['error', 'smart'],
