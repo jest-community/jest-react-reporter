@@ -5307,7 +5307,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": ^5.0.0
     "@typescript-eslint/parser": ^5.0.0
     "@vercel/ncc": ^0.36.0
-    chalk: ^4.0.0
+    chalk: ^5.0.0
     eslint: ^8.0.0
     eslint-config-prettier: ^8.0.0
     eslint-plugin-import: ^2.18.2
