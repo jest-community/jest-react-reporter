@@ -1,14 +1,22 @@
 import * as path from 'path';
 import * as React from 'react';
-import { Box, Static, Text, TextProps, render, useApp, useStdout } from 'ink';
+import {
+  Box,
+  Static,
+  Text,
+  type TextProps,
+  render,
+  useApp,
+  useStdout,
+} from 'ink';
 import slash = require('slash');
 import type { Config } from '@jest/types';
 import type { AggregatedResult, TestResult } from '@jest/test-result';
 import {
   BaseReporter,
-  ReporterOnStartOptions,
-  Test,
-  TestContext,
+  type ReporterOnStartOptions,
+  type Test,
+  type TestContext,
 } from '@jest/reporters';
 import { SnapshotStatus } from './SnapshotStatus';
 import { Summary } from './Summary';
