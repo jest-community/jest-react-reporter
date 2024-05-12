@@ -6,8 +6,6 @@
     "moduleResolution": "node",
     "jsx": "react",
     "declaration": false,
-    "isolatedModules": true,
-    "importsNotUsedAsValues": "error",
     "noImplicitReturns": true,
     "strict": true,
     // ink requires this

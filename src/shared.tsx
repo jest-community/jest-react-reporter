@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Box, Text, TextProps } from 'ink';
+import { Box, Text, type TextProps } from 'ink';
 import type { TestResult } from '@jest/test-result';
 import type { Config } from '@jest/types';
 import chalk = require('chalk');
