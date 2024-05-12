@@ -3,19 +3,12 @@
 module.exports = {
   parser: require.resolve('@typescript-eslint/parser'),
   extends: [
-    'plugin:node/recommended',
+    'plugin:n/recommended',
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:react/recommended',
     'prettier',
   ],
-  plugins: [
-    'node',
-    'prettier',
-    'import',
-    '@typescript-eslint',
-    'react',
-    'react-hooks',
-  ],
+  plugins: ['prettier', 'import', '@typescript-eslint', 'react', 'react-hooks'],
   parserOptions: {
     ecmaVersion: 2018,
   },
@@ -45,9 +38,9 @@ module.exports = {
     'sort-imports': ['error', { ignoreDeclarationSort: true }],
     'prettier/prettier': 'error',
     // TS covers this
-    'node/no-missing-import': 'off',
-    'node/no-unsupported-features/es-syntax': 'off',
-    'node/no-unsupported-features/es-builtins': 'error',
+    'n/no-missing-import': 'off',
+    'n/no-unsupported-features/es-syntax': 'off',
+    'n/no-unsupported-features/es-builtins': 'error',
     'import/no-commonjs': 'error',
     'import/no-duplicates': 'error',
     'import/no-extraneous-dependencies': 'error',
