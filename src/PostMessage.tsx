@@ -5,13 +5,13 @@ import { testPathPatternToRegExp } from 'jest-util';
 import * as React from 'react';
 import { Box, Text } from 'ink';
 
-const LeftPadded: React.FC = ({ children }) => (
+const LeftPadded: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <Box paddingLeft={1}>{children}</Box>
 );
 
-const HorizontallyPadded: React.FC = ({ children }) => (
-  <Box paddingX={1}>{children}</Box>
-);
+const HorizontallyPadded: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => <Box paddingX={1}>{children}</Box>;
 
 const TestInfo: React.FC<{ config: Config.GlobalConfig }> = ({ config }) => {
   if (config.runTestsByPath) {
