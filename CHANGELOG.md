@@ -1,3 +1,10 @@
+## [4.0.1](https://github.com/jest-community/jest-react-reporter/compare/v4.0.0...v4.0.1) (2024-05-12)
+
+
+### Bug Fixes
+
+* update to React 18 ([#223](https://github.com/jest-community/jest-react-reporter/issues/223)) ([47b27fa](https://github.com/jest-community/jest-react-reporter/commit/47b27fa7d08da150c7c0ad450e3871c25d4aeba4))
+
 # [4.0.0](https://github.com/jest-community/jest-react-reporter/compare/v3.0.0...v4.0.0) (2022-09-06)
 
 
