@@ -71,7 +71,7 @@
     "eslint-plugin-react": "^7.16.0",
     "eslint-plugin-react-hooks": "^4.0.2",
     "husky": "^9.0.0",
-    "ink": "^3.2.0",
+    "ink": "^5.0.0",
     "jest": "^29.0.2",
     "jest-util": "^29.0.2",
     "lint-staged": "^13.0.0",
