@@ -1,14 +1,11 @@
 {
+  "extends": "@tsconfig/node14/tsconfig.json",
   "compilerOptions": {
-    "lib": ["es2017", "dom"],
-    "target": "es2017",
-    "module": "commonjs",
-    "moduleResolution": "node",
+    "skipLibCheck": false,
     "jsx": "react",
     "declaration": false,
     "isolatedModules": true,
     "noImplicitReturns": true,
-    "strict": true,
     // ink requires this
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,

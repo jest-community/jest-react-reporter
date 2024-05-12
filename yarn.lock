@@ -1618,6 +1618,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tsconfig/node14@npm:^14.1.2":
+  version: 14.1.2
+  resolution: "@tsconfig/node14@npm:14.1.2"
+  checksum: f5934cebc6c8790b28a145d8abbafcb0bd23a405ebcb790bd9f524a2750757d5675b418583bddaed760894a18a0a59a8cbfec1979c90e388d7ad784a9519193f
+  languageName: node
+  linkType: hard
+
 "@tufjs/canonical-json@npm:2.0.0":
   version: 2.0.0
   resolution: "@tufjs/canonical-json@npm:2.0.0"
@@ -5576,6 +5583,7 @@ __metadata:
     "@jest/types": ^29.0.2
     "@semantic-release/changelog": ^6.0.0
     "@semantic-release/git": ^10.0.0
+    "@tsconfig/node14": ^14.1.2
     "@types/jest": ^29.0.0
     "@types/node": ^16.0.0
     "@types/react": ^17.0.39
