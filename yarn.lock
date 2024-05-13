@@ -2735,15 +2735,15 @@ __metadata:
   linkType: hard
 
 "cli-table3@npm:^0.6.3":
-  version: 0.6.4
-  resolution: "cli-table3@npm:0.6.4"
+  version: 0.6.5
+  resolution: "cli-table3@npm:0.6.5"
   dependencies:
     "@colors/colors": 1.5.0
     string-width: ^4.2.0
   dependenciesMeta:
     "@colors/colors":
       optional: true
-  checksum: 0942d9977c05b31e9c7e0172276246b3ac2124c2929451851c01dbf5fc9b3d40cc4e1c9d468ff26dd3cfd18617963fe227b4cfeeae2881b70f302d69d792b5bb
+  checksum: ab7afbf4f8597f1c631f3ee6bb3481d0bfeac8a3b81cffb5a578f145df5c88003b6cfff46046a7acae86596fdd03db382bfa67f20973b6b57425505abc47e42c
   languageName: node
   linkType: hard
 
