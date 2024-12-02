@@ -1764,19 +1764,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*":
+"@types/node@npm:*, @types/node@npm:^22.0.0":
   version: 22.10.1
   resolution: "@types/node@npm:22.10.1"
   dependencies:
     undici-types: ~6.20.0
   checksum: 5a9b81500f288a8fb757b61bd939f99f72b6cb59347a5bae52dd1c2c87100ebbaa9da4256ef3cb9add2090e8704cda1d9a1ffc14ccd5db47a6466c8bae10ebcb
-  languageName: node
-  linkType: hard
-
-"@types/node@npm:^14.0.0":
-  version: 14.18.63
-  resolution: "@types/node@npm:14.18.63"
-  checksum: be909061a54931778c71c49dc562586c32f909c4b6197e3d71e6dac726d8bd9fccb9f599c0df99f52742b68153712b5097c0f00cac4e279fa894b0ea6719a8fd
   languageName: node
   linkType: hard
 
@@ -5718,7 +5711,7 @@ __metadata:
     "@semantic-release/git": ^10.0.0
     "@tsconfig/node14": ^14.1.2
     "@types/jest": ^29.0.0
-    "@types/node": ^14.0.0
+    "@types/node": ^22.0.0
     "@types/react": ^18.0.0
     "@typescript-eslint/eslint-plugin": ^5.0.0
     "@typescript-eslint/parser": ^5.0.0
