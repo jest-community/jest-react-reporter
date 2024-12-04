@@ -98,5 +98,5 @@
       "@semantic-release/github"
     ]
   },
-  "packageManager": "yarn@3.8.4"
+  "packageManager": "yarn@3.8.7"
 }
