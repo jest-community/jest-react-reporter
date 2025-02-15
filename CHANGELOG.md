@@ -1,3 +1,15 @@
+# [5.0.0](https://github.com/jest-community/jest-react-reporter/compare/v4.0.1...v5.0.0) (2025-02-15)
+
+
+### chore
+
+* upgrade typescript ([#219](https://github.com/jest-community/jest-react-reporter/issues/219)) ([341c2f9](https://github.com/jest-community/jest-react-reporter/commit/341c2f9bf2e78c1d7fb22e2dfac79ce3daedee8d))
+
+
+### BREAKING CHANGES
+
+* Node versions 14, 16 and 21 are no longer supported
+
 ## [4.0.1](https://github.com/jest-community/jest-react-reporter/compare/v4.0.0...v4.0.1) (2024-05-12)
 
 

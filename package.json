@@ -1,6 +1,6 @@
 {
   "name": "jest-react-reporter",
-  "version": "4.0.1",
+  "version": "5.0.0",
   "description": "Reporter for Jest written in React",
   "repository": "jest-community/jest-react-reporter",
   "license": "MIT",
