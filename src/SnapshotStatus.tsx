@@ -6,22 +6,28 @@ import { Box, Text } from 'ink';
 import { pluralize } from 'jest-util';
 import { Arrow, Dot } from './shared';
 
-const FailText: React.FC = ({ children }) => (
+const FailText: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <Text bold color="red">
     {children}
   </Text>
 );
-const SnapshotAdded: React.FC = ({ children }) => (
+const SnapshotAdded: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => (
   <Text bold color="green">
     {children}
   </Text>
 );
-const SnapshotUpdated: React.FC = ({ children }) => (
+const SnapshotUpdated: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => (
   <Text bold color="green">
     {children}
   </Text>
 );
-const SnapshotOutdated: React.FC = ({ children }) => (
+const SnapshotOutdated: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => (
   <Text bold color="yellow">
     {children}
   </Text>

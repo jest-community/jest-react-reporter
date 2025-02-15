@@ -7,13 +7,15 @@ import { useCounter } from './hooks';
 
 const PROGRESS_BAR_WIDTH = 40;
 
-const SummaryHeading: React.FC = ({ children }) => (
+const SummaryHeading: React.FC<{ children: string }> = ({ children }) => (
   <Box width={13}>
     <Text bold>{children}:</Text>
   </Box>
 );
 
-const RightPaddedWithComma: React.FC = ({ children }) => (
+const RightPaddedWithComma: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => (
   <Box paddingRight={1}>
     <Text>{children},</Text>
   </Box>
