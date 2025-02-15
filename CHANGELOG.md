@@ -1,69 +1,63 @@
 ## [4.0.1](https://github.com/jest-community/jest-react-reporter/compare/v4.0.0...v4.0.1) (2024-05-12)
 
+
 ### Bug Fixes
 
-- update to React 18
-  ([#223](https://github.com/jest-community/jest-react-reporter/issues/223))
-  ([47b27fa](https://github.com/jest-community/jest-react-reporter/commit/47b27fa7d08da150c7c0ad450e3871c25d4aeba4))
+* update to React 18 ([#223](https://github.com/jest-community/jest-react-reporter/issues/223)) ([47b27fa](https://github.com/jest-community/jest-react-reporter/commit/47b27fa7d08da150c7c0ad450e3871c25d4aeba4))
 
 # [4.0.0](https://github.com/jest-community/jest-react-reporter/compare/v3.0.0...v4.0.0) (2022-09-06)
 
+
 ### Features
 
-- drop node 12
-  ([49089b5](https://github.com/jest-community/jest-react-reporter/commit/49089b566843aadd80096cf8c6f5d84e6c1d4a7d))
-- update to Jest 29 and support 27-29 in peer dependencies
-  ([#100](https://github.com/jest-community/jest-react-reporter/issues/100))
-  ([a0aaa14](https://github.com/jest-community/jest-react-reporter/commit/a0aaa14b9ab18690a1d8d29009a37dbf55278c24))
+* drop node 12 ([49089b5](https://github.com/jest-community/jest-react-reporter/commit/49089b566843aadd80096cf8c6f5d84e6c1d4a7d))
+* update to Jest 29 and support 27-29 in peer dependencies ([#100](https://github.com/jest-community/jest-react-reporter/issues/100)) ([a0aaa14](https://github.com/jest-community/jest-react-reporter/commit/a0aaa14b9ab18690a1d8d29009a37dbf55278c24))
+
 
 ### BREAKING CHANGES
 
-- No longer support Node 12
+* No longer support Node 12
 
 # [3.0.0](https://github.com/jest-community/jest-react-reporter/compare/v2.0.1...v3.0.0) (2022-02-26)
 
+
 ### Bug Fixes
 
-- **deps:** update jest monorepo to v27 (major)
-  ([#31](https://github.com/jest-community/jest-react-reporter/issues/31))
-  ([bc9d09f](https://github.com/jest-community/jest-react-reporter/commit/bc9d09f3bfa2672b33498d3607e1c0f91b32ad97))
-- put string inside Text
-  ([3481e50](https://github.com/jest-community/jest-react-reporter/commit/3481e5016349ce32bce10d1ff75bdc3ee171cd7b))
+* **deps:** update jest monorepo to v27 (major) ([#31](https://github.com/jest-community/jest-react-reporter/issues/31)) ([bc9d09f](https://github.com/jest-community/jest-react-reporter/commit/bc9d09f3bfa2672b33498d3607e1c0f91b32ad97))
+* put string inside Text ([3481e50](https://github.com/jest-community/jest-react-reporter/commit/3481e5016349ce32bce10d1ff75bdc3ee171cd7b))
+
 
 ### Features
 
-- drop node 10 and 13
-  ([abccf17](https://github.com/jest-community/jest-react-reporter/commit/abccf17cb29292f8f7ddddd4bce72202456e6fd9))
-- update ink to v3
-  ([#41](https://github.com/jest-community/jest-react-reporter/issues/41))
-  ([15cb8b9](https://github.com/jest-community/jest-react-reporter/commit/15cb8b96c1db49128df8f7030a1702993ed82dba))
+* drop node 10 and 13 ([abccf17](https://github.com/jest-community/jest-react-reporter/commit/abccf17cb29292f8f7ddddd4bce72202456e6fd9))
+* update ink to v3 ([#41](https://github.com/jest-community/jest-react-reporter/issues/41)) ([15cb8b9](https://github.com/jest-community/jest-react-reporter/commit/15cb8b96c1db49128df8f7030a1702993ed82dba))
+
 
 ### BREAKING CHANGES
 
-- Remove support for node 10 and 13
+* Remove support for node 10 and 13
 
 ## [2.0.1](https://github.com/jest-community/jest-react-reporter/compare/v2.0.0...v2.0.1) (2020-05-23)
 
+
 ### Bug Fixes
 
-- disable `esModuleInterop`
-  ([074ff80](https://github.com/jest-community/jest-react-reporter/commit/074ff80f790e0dc8d741bb9893d59d31825ffe92))
+* disable `esModuleInterop` ([074ff80](https://github.com/jest-community/jest-react-reporter/commit/074ff80f790e0dc8d741bb9893d59d31825ffe92))
 
 # [2.0.0](https://github.com/jest-community/jest-react-reporter/compare/v1.1.10...v2.0.0) (2020-05-23)
 
+
 ### Bug Fixes
 
-- build with (patched) ncc
-  ([146370d](https://github.com/jest-community/jest-react-reporter/commit/146370dd6a3a1908766c98b33434261b185ef4c3))
-- update dependencies
-  ([f2e12da](https://github.com/jest-community/jest-react-reporter/commit/f2e12da36d9203af4763e8c805548160e8bd92e6))
-- use `import type` syntax
-  ([8ff117c](https://github.com/jest-community/jest-react-reporter/commit/8ff117c93c7a9a05b7d7883bac74489bf9d06ee1))
+* build with (patched) ncc ([146370d](https://github.com/jest-community/jest-react-reporter/commit/146370dd6a3a1908766c98b33434261b185ef4c3))
+* update dependencies ([f2e12da](https://github.com/jest-community/jest-react-reporter/commit/f2e12da36d9203af4763e8c805548160e8bd92e6))
+* use `import type` syntax ([8ff117c](https://github.com/jest-community/jest-react-reporter/commit/8ff117c93c7a9a05b7d7883bac74489bf9d06ee1))
+
 
 ### BREAKING CHANGES
 
-- do not emit type information
-- drop support for Node 8
+* do not emit type information
+* drop support for Node 8
 
 ## [1.1.10](https://github.com/jest-community/jest-react-reporter/compare/v1.1.9...v1.1.10) (2019-11-14)
 
