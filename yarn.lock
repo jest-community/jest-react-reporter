@@ -1718,10 +1718,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tsconfig/node14@npm:^14.1.2":
-  version: 14.1.7
-  resolution: "@tsconfig/node14@npm:14.1.7"
-  checksum: 10/beba41e2fecaf93362a933535d076358968d7ebbfa33f0bd9a88fccebc9b206d2bc00108e55b94259635ef470090391b056f3c56321d4febc47039a1c1c6f718
+"@tsconfig/node16@npm:^16.1.0":
+  version: 16.1.9
+  resolution: "@tsconfig/node16@npm:16.1.9"
+  checksum: 10/2bfa919418f67ce6a6a4325dcf8eabbdf8b84f7363de81b9e34a705cd527cb7f3161f7acf255705c11b8661e0567cceba511323dfceae653f06f4ea0ebdf032e
   languageName: node
   linkType: hard
 
@@ -5863,7 +5863,7 @@ __metadata:
     "@jest/types": "npm:^29.0.2"
     "@semantic-release/changelog": "npm:^6.0.0"
     "@semantic-release/git": "npm:^10.0.0"
-    "@tsconfig/node14": "npm:^14.1.2"
+    "@tsconfig/node16": "npm:^16.1.0"
     "@types/jest": "npm:^29.0.0"
     "@types/node": "npm:^16.0.0"
     "@types/react": "npm:^18.0.0"
