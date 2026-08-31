@@ -58,8 +58,8 @@
     "@types/jest": "^29.0.0",
     "@types/node": "^16.0.0",
     "@types/react": "^18.0.0",
-    "@typescript-eslint/eslint-plugin": "^6.0.0",
-    "@typescript-eslint/parser": "^6.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0",
     "@vercel/ncc": "^0.38.0",
     "chalk": "^4.0.0",
     "eslint": "^8.0.0",
@@ -86,7 +86,7 @@
     "jest": "^27.0.0 || ^28.0.0 || ^29.0.0"
   },
   "resolutions": {
-    "eslint-plugin-jest/@typescript-eslint/utils": "^6.0.0"
+    "eslint-plugin-jest/@typescript-eslint/utils": "^8.0.0"
   },
   "engines": {
     "node": ">=14"
